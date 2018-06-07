@@ -11,10 +11,7 @@
         }
     ],
     "require": {
-        "php": "~7.0",
-        "spatie/crawler": "^2.7",
-        "katzgrau/klogger": "dev-master",
-        "10up/wp-content-connect": "dev-multi-to"
+        "php": "~7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~5.7.0",
