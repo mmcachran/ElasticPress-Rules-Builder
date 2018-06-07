@@ -66,7 +66,7 @@ class Plugin {
 	 *
 	 * @return void
 	 */
-	public function admin_init() {
+	public function init_admin() {
 
 	}
 

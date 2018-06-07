@@ -93,14 +93,18 @@ function ep_rules_builder_autoloader() {
  *
  * If autoloading failed an admin notice is shown and logged to
  * error_log.
+ *
+ * @return void
  */
 function ep_rules_builder_autorun() {
-	if ( ep_rules_builder_autoload() ) {
-		$plugin = \EP_Rules_Builder\Plugin::get_instance();
-		$plugin->enable();
-	} else {
+	// Bail early if plugin cannot be autoloded.
+	if ( ! ep_rules_builder_autoload() ) {
 		add_action( 'admin_notices', 'ep_rules_builder_autoload_notice' );
+		return;
 	}
+
+	$plugin = \EP_Rules_Builder\Plugin::get_instance();
+	$plugin->enable();
 }
 
 /**
