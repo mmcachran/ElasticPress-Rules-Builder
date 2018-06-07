@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NobelPrize\\": "includes/EP_Rules_Builder"
+            "EP_Rules_Builder\\": "includes/EP_Rules_Builder"
         },
         "files": [
             "includes/EP_Rules_Builder/Helpers.php"
