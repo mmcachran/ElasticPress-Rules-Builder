@@ -21,42 +21,42 @@ namespace EP_Rules_Builder;
  * ```
  */
 class Plugin {
-    /**
-     * Holds a single instance of this class.
-     *
-     * @var \EP_Rules_Builder\Plugin
-     */
-    private static $singleton_instance = null;
+	/**
+	 * Holds a single instance of this class.
+	 *
+	 * @var \EP_Rules_Builder\Plugin
+	 */
+	private static $singleton_instance = null;
 
-    /**
-     * Returns a single instance of this class.
-     *
-     * @return \EP_Rules_Builder\Plugin A singleton instance of this class.
-     */
-    public static get_instance() {
-        if ( null === self::$singleton_instance ) {
-            self::$singleton_instance = new self();
-        }
+	/**
+	 * Returns a single instance of this class.
+	 *
+	 * @return \EP_Rules_Builder\Plugin A singleton instance of this class.
+	 */
+	public static function get_instance() {
+		if ( null === self::$singleton_instance ) {
+			self::$singleton_instance = new self();
+		}
 
-        return self::$singleton_instance;
-    }
+		return self::$singleton_instance;
+	}
 
-    /**
-     * Class constructor.
-     *
-     * @return void
-     */
-    private function __construct() {
+	/**
+	 * Class constructor.
+	 *
+	 * @return void
+	 */
+	private function __construct() {
 
-    }
+	}
 
-    /**
-     * Starts the plugin by subscribing to the WordPress lifecycle hooks.
-     *
-     * @return void
-     */
-    public function enable() {
+	/**
+	 * Starts the plugin by subscribing to the WordPress lifecycle hooks.
+	 *
+	 * @return void
+	 */
+	public function enable() {
 
-    }
+	}
 
 }
