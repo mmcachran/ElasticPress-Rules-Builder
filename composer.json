@@ -10,12 +10,6 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/10up/wp-content-connect.git"
-        }
-    ],
     "require": {
         "php": "~7.0",
         "spatie/crawler": "^2.7",
