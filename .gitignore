@@ -1,0 +1,8 @@
+/vendor/
+
+# ignore local config
+config.local.php
+config.test.php
+
+# ignore commit slugs
+.commit
