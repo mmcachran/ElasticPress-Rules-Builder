@@ -42,20 +42,40 @@ class Plugin {
 	}
 
 	/**
-	 * Class constructor.
-	 *
-	 * @return void
-	 */
-	private function __construct() {
-
-	}
-
-	/**
 	 * Starts the plugin by subscribing to the WordPress lifecycle hooks.
 	 *
 	 * @return void
 	 */
 	public function enable() {
+		add_action( 'init', [ $this, 'init' ] );
+		add_action( 'admin_init', [ $this, 'init_admin' ] );
+		add_action( 'admin_menu', [ $this, 'init_admin_menu' ] );
+	}
+
+	/**
+	 * Runs on init WP lifecycle hook.
+	 *
+	 * @return void
+	 */
+	public function init() {
+
+	}
+
+	/**
+	 * Runs on the admin_init WP lifecycle hook.
+	 *
+	 * @return void
+	 */
+	public function admin_init() {
+
+	}
+
+	/**
+	 * Runs on the init_admin_menu WP lifecycle hook.
+	 *
+	 * @return void
+	 */
+	public function init_admin_menu() {
 
 	}
 
