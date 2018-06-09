@@ -29,6 +29,27 @@ class Plugin {
 	private static $singleton_instance = null;
 
 	/**
+	 * Holds admin support objects.
+	 *
+	 * @var array
+	 */
+	protected $admin_support = [];
+
+	/**
+	 * Holds admin menu support objects.
+	 *
+	 * @var array
+	 */
+	protected $admin_menu_support = [];
+
+	/**
+	 * Holds support objects.
+	 *
+	 * @var array
+	 */
+	protected $support = [];
+
+	/**
 	 * Returns a single instance of this class.
 	 *
 	 * @return \EP_Rules_Builder\Plugin A singleton instance of this class.
@@ -49,7 +70,7 @@ class Plugin {
 	public function enable() {
 		add_action( 'init', [ $this, 'init' ] );
 		add_action( 'admin_init', [ $this, 'init_admin' ] );
-		add_action( 'admin_menu', [ $this, 'init_admin_menu' ] );
+		add_action( 'admin_menu', [ $this, 'init_admin_menu' ], 20 );
 	}
 
 	/**
@@ -58,7 +79,10 @@ class Plugin {
 	 * @return void
 	 */
 	public function init() {
+		$this->support = [];
 
+		// Register objects.
+		$this->register_objects( $this->support );
 	}
 
 	/**
@@ -67,7 +91,10 @@ class Plugin {
 	 * @return void
 	 */
 	public function init_admin() {
+		$this->admin_support = [];
 
+		// Register objects.
+		$this->register_objects( $this->admin_support );
 	}
 
 	/**
@@ -76,7 +103,43 @@ class Plugin {
 	 * @return void
 	 */
 	public function init_admin_menu() {
+		$this->admin_menu_support = [
+			new \EP_Rules_Builder\Admin\MenuSupport(),
+		];
 
+		// Register objects.
+		$this->register_objects( $this->admin_menu_support );
+	}
+
+	/**
+	 * Registers an array of objects.
+	 *
+	 * @param array $objects The array of objects to register.
+	 * @return void
+	 */
+	protected function register_objects( array $objects ) {
+		array_map( [ $this, 'register_object' ], $objects );
+	}
+
+	/**
+	 * Registers a single object.
+	 *
+	 * @param object $object The object to register.
+	 * @return void
+	 */
+	public function register_object( $object ) {
+		// Bail early if there are no registration methods.
+		if ( ! method_exists( $object, 'can_register' ) || ! method_exists( $object, 'register' ) ) {
+			return;
+		}
+
+		// Bail early if the object cannot be registered.
+		if ( ! $object->can_register() ) {
+			return;
+		}
+
+		// Register the object.
+		$object->register();
 	}
 
 }
