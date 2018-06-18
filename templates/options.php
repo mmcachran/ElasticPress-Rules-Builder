@@ -7,5 +7,5 @@
 
 ?>
 <div class="wrap">
-	<p>test</p>
+	<h2><?php esc_html_e( 'ElasticPress Rules Builder', 'ep-rules-builder' ); ?></h2>
 </div>
