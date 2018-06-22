@@ -50,6 +50,13 @@ class Plugin {
 	protected $support = [];
 
 	/**
+	 * Holds an instance of post type factory object.
+	 *
+	 * @var PostType\PostTypeFactory
+	 */
+	protected $post_type_factory = null;
+
+	/**
 	 * Returns a single instance of this class.
 	 *
 	 * @return \EP_Rules_Builder\Plugin A singleton instance of this class.
@@ -83,6 +90,10 @@ class Plugin {
 
 		// Register objects.
 		$this->register_objects( $this->support );
+
+		// Register the post type factory.
+		$this->post_type_factory = new PostType\PostTypeFactory();
+		$this->post_type_factory->build_all();
 	}
 
 	/**
