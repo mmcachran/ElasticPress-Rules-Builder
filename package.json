@@ -1,0 +1,54 @@
+{
+  "name": "ElasticPress Rules Builder",
+  "version": "1.0.0",
+  "description": "ElasticPress Rules Builder",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": {
+    "name": "mmcachran",
+    "email": "mattmcachran@gmail.com",
+    "url": "https://github.com/mmcachran/",
+    "role": "developer"
+  },
+  "scripts": {
+    "start": "npm install && gulp",
+    "watch": "gulp watch",
+    "build": "gulp",
+    "deploy": "yarn build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "latest",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-register": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "latest",
+    "bourbon": "latest",
+    "bourbon-neat": "latest",
+    "browser-sync": "latest",
+    "caniuse-db": "^1.0.30000798",
+    "css-mqpacker": "latest",
+    "del": "^3.0.0",
+    "eslint": "^4.16.0",
+    "eslint-loader": "^1.9.0",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-filter": "^5.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^10.0.0",
+    "pump": "^1.0.3",
+    "require-dir": "^0.3.2",
+    "run-sequence": "^1.2.2",
+    "webpack": "^3.10.0",
+    "webpack-stream": "^3.2.0"
+  }
+}

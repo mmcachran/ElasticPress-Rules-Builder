@@ -6,3 +6,7 @@ config.test.php
 
 # ignore commit slugs
 .commit
+
+# OSX
+.DS_Store
+

@@ -1,0 +1,10 @@
+{
+  "includes/EP_Rules_Builder/*.php": {
+    "type": "plugin",
+    "test": "tests/EP_Rules_Builder/%sTest.php"
+  },
+  "tests/EP_Rules_Builder/*Test.php": {
+    "type": "test",
+    "alternate": "includes/EP_Rules_Builder/%s.php"
+  }
+}
