@@ -37,7 +37,9 @@ class PostTypeFactory implements \EP_Rules_Builder\FactoryInterface {
 	 *
 	 * @var array
 	 */
-	protected $post_type_mapping = [];
+	protected $post_type_mapping = [
+		EP_RULE_POST_TYPE => 'RulePostType',
+	];
 
 	/**
 	 * Builds all supported post types. This is bound to the 'init' hook

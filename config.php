@@ -16,3 +16,9 @@ ep_rules_builder_define( 'EP_RULES_BUILDER_PLUGIN', __DIR__ . '/ep-rules-builder
 ep_rules_builder_define( 'EP_RULES_BUILDER_PLUGIN_VERSION', $plugin_version );
 ep_rules_builder_define( 'EP_RULES_BUILDER_PLUGIN_DIR', __DIR__ );
 ep_rules_builder_define( 'EP_RULES_BUILDER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+// Post Types.
+ep_rules_builder_define( 'EP_RULE_POST_TYPE', 'ep-rule' );
+
+// Taxonomies.
+ep_rules_builder_define( 'EP_RULE_TYPE_TAXONOMY', 'ep-rule-type' );

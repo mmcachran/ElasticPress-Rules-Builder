@@ -57,6 +57,13 @@ class Plugin {
 	protected $post_type_factory = null;
 
 	/**
+	 * Holds an instance of taxonomy factory object.
+	 *
+	 * @var Taxonomy\TaxonomyFactory
+	 */
+	protected $taxonomy_factory = null;
+
+	/**
 	 * Returns a single instance of this class.
 	 *
 	 * @return \EP_Rules_Builder\Plugin A singleton instance of this class.
@@ -90,6 +97,10 @@ class Plugin {
 
 		// Register objects.
 		$this->register_objects( $this->support );
+
+		// Register the taxonomy factory.
+		$this->taxonomy_factory = new Taxonomy\TaxonomyFactory();
+		$this->taxonomy_factory->build_all();
 
 		// Register the post type factory.
 		$this->post_type_factory = new PostType\PostTypeFactory();
