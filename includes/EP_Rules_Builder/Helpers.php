@@ -88,11 +88,7 @@ function get_post( $post ) {
 		$post = \get_post( $post );
 	}
 
-	if ( true !== is_post( $post ) ) {
-		return null;
-	}
-
-	return $post;
+	return is_post( $post ) ? $post : null;
 }
 
 /**
@@ -102,7 +98,7 @@ function get_post( $post ) {
  * @return boolean
  */
 function is_post( $post ) {
-	return true === ( $post instanceof \WP_Post );
+	return $post instanceof \WP_Post;
 }
 
 /**
@@ -112,7 +108,7 @@ function is_post( $post ) {
  * @return boolean
  */
 function is_term( $term ) {
-	return true === ( $term instanceof \WP_Term );
+	return $term instanceof \WP_Term;
 }
 
 /**
@@ -150,7 +146,6 @@ function debug( $message ) {
 function is_url_404( $url ) {
 	$response      = wp_remote_get( $url ); // @codingStandardsIgnoreLine
 	$response_code = wp_remote_retrieve_response_code( $response );
-
 	return ( 404 === (int) $response_code );
 }
 

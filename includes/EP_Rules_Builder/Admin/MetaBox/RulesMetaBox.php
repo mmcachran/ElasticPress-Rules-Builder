@@ -17,7 +17,7 @@ class RulesMetaBox extends AbstractMetaBox {
 	 * @return bool True if the metabox should be registered, false otherwise.
 	 */
 	public function can_register() {
-		return true;
+		return class_exists( '\Fieldmanager_Group' );
 	}
 
 	/**

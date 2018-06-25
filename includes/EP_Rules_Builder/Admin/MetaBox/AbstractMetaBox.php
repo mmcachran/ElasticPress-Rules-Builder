@@ -12,6 +12,13 @@ namespace EP_Rules_Builder\Admin\MetaBox;
  */
 abstract class AbstractMetaBox implements \EP_Rules_Builder\RegistrationInterface {
 	/**
+	 * The prefix for this metabox.
+	 *
+	 * @var string
+	 */
+	const META_BOX_PREFIX = 'ep_';
+
+	/**
 	 * Determines if the metabox should be registered.
 	 *
 	 * @return bool True if the metabox should be registered, false otherwise.
@@ -23,7 +30,7 @@ abstract class AbstractMetaBox implements \EP_Rules_Builder\RegistrationInterfac
 	/**
 	 * Register hooks for the metabox.
 	 *
-	 * @return void
+	 * @return bool
 	 */
 	abstract public function register();
 }
