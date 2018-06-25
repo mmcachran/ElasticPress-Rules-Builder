@@ -113,7 +113,9 @@ class Plugin {
 	 * @return void
 	 */
 	public function init_admin() {
-		$this->admin_support = [];
+		$this->admin_support = [
+			new Admin\MetaBox\RulesMetaBox(),
+		];
 
 		// Register objects.
 		$this->register_objects( $this->admin_support );
