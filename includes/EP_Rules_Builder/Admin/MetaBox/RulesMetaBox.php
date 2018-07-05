@@ -74,6 +74,7 @@ class RulesMetaBox extends AbstractMetaBox {
 					),
 
 					'triggers'  => $this->get_triggers_metabox(),
+					'actions'  => $this->get_actions_metabox(),
 				],
 			]
 		);
@@ -99,6 +100,21 @@ class RulesMetaBox extends AbstractMetaBox {
 				'extra_elements' => 0,
 				'children'       => [
 
+					'title'  => new \Fieldmanager_Textfield(
+						[
+							'label'            => esc_html__( 'Title', 'ep-rules-builder' ),
+							'description'     => esc_html__( 'Title for the trigger.', 'ep-rules-builder' ),
+							'field_class'      => 'text',
+							'validation_rules' => [
+								'required' => false,
+							],
+							'attributes'       => [
+								'maxlength' => 80,
+								'size'      => 60,
+							],
+						]
+					),
+
 					'operator' => new \Fieldmanager_Select(
 						[
 							'label'   => esc_html__( 'Operator', 'ep-rules-builder' ),
@@ -116,6 +132,91 @@ class RulesMetaBox extends AbstractMetaBox {
 							'attributes'       => [
 								'maxlength' => 80,
 								'size'      => 60,
+							],
+						]
+					),
+				],
+			]
+		);
+	}
+
+	/**
+	 * Returns the actions metabox group.
+	 *
+	 * @return \Fieldmanager_Group The actions metabox group.
+	 */
+	protected function get_actions_metabox() {
+		return new \Fieldmanager_Group(
+			[
+				'label'          => esc_html__( 'Actions', 'ep-rules-builder' ),
+				'label_macro'    => array( 'Action: %s', 'title' ),
+				'add_more_label' => esc_html__( 'Add Another Action', 'ep-rules-builder' ),
+				'limit'          => 0,
+				'sortable'       => true,
+				'collapsible'    => true,
+				'extra_elements' => 0,
+				'children'       => [
+
+					'title'  => new \Fieldmanager_Textfield(
+						[
+							'label'            => esc_html__( 'Title', 'ep-rules-builder' ),
+							'description'     => esc_html__( 'Title for the action.', 'ep-rules-builder' ),
+							'field_class'      => 'text',
+							'validation_rules' => [
+								'required' => false,
+							],
+							'attributes'       => [
+								'maxlength' => 80,
+								'size'      => 60,
+							],
+						]
+					),
+
+					'action' => new \Fieldmanager_Select(
+						[
+							'label'   => esc_html__( 'Action', 'ep-rules-builder' ),
+							'options' => [
+								'boost' => esc_html__( 'Boost', 'ep-rules-builder' ),
+								'bury'  => esc_html__( 'Bury', 'ep-rules-builder' ),
+								'hide'  => esc_html__( 'Hide', 'ep-rules-builder' ),
+							],
+						]
+					),
+
+					'boost'  => new \Fieldmanager_Textfield(
+						[
+							'label'            => esc_html__( 'Boost', 'ep-rules-builder' ),
+							'field_class'      => 'text',
+							'input_type' => 'number',
+							'validation_rules' => [
+								'required' => false,
+							],
+							'attributes'       => [
+								'maxlength' => 80,
+								'size'      => 60,
+							],
+							'display_if' => [
+								'src' => 'action',
+								'value' => 'boost',
+							],
+						]
+					),
+
+					'bury'  => new \Fieldmanager_Textfield(
+						[
+							'label'            => esc_html__( 'Bury', 'ep-rules-builder' ),
+							'field_class'      => 'text',
+							'input_type' => 'number',
+							'validation_rules' => [
+								'required' => false,
+							],
+							'attributes'       => [
+								'maxlength' => 80,
+								'size'      => 60,
+							],
+							'display_if' => [
+								'src' => 'action',
+								'value' => 'bury',
 							],
 						]
 					),
