@@ -105,6 +105,20 @@ class RulesMetaBox extends AbstractMetaBox {
 							'options' => $this->get_operator_options(),
 						]
 					),
+
+					'keyword'  => new \Fieldmanager_Textfield(
+						[
+							'label'            => esc_html__( 'Keyword', 'ep-rules-builder' ),
+							'field_class'      => 'text',
+							'validation_rules' => [
+								'required' => false,
+							],
+							'attributes'       => [
+								'maxlength' => 80,
+								'size'      => 60,
+							],
+						]
+					),
 				],
 			]
 		);
