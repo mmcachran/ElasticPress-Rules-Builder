@@ -128,7 +128,7 @@ class RulesMetaBox extends AbstractMetaBox {
 		/**
 		 * Filter allowed operators
 		 *
-		 * Turn on/off allowed operators.
+		 * Modify allowed operators.
 		 *
 		 * @param         array built-in operators
 		 */
