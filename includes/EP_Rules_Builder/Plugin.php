@@ -83,7 +83,7 @@ class Plugin {
 	 */
 	public function enable() {
 		add_action( 'init', [ $this, 'init' ] );
-		add_action( 'admin_init', [ $this, 'init_admin' ] );
+		add_action( 'admin_init', [ $this, 'init_admin' ], 20 );
 		add_action( 'admin_menu', [ $this, 'init_admin_menu' ], 20 );
 	}
 
@@ -105,6 +105,25 @@ class Plugin {
 		// Register the post type factory.
 		$this->post_type_factory = new PostType\PostTypeFactory();
 		$this->post_type_factory->build_all();
+
+		// Initialize admin support classes.
+		if ( is_admin() ) {
+			$this->init_admin_support();
+		}
+	}
+
+	/**
+	 * Initializes admin support.
+	 *
+	 * @return void
+	 */
+	protected function init_admin_support() {
+		$this->admin_support = [
+			new Admin\MetaBox\RulesMetaBox(),
+		];
+
+		// Register objects.
+		$this->register_objects( $this->admin_support );
 	}
 
 	/**
@@ -113,12 +132,7 @@ class Plugin {
 	 * @return void
 	 */
 	public function init_admin() {
-		$this->admin_support = [
-			new Admin\MetaBox\RulesMetaBox(),
-		];
 
-		// Register objects.
-		$this->register_objects( $this->admin_support );
 	}
 
 	/**

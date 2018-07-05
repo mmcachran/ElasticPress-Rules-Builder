@@ -85,10 +85,6 @@ class RulePostType extends AbstractPostType {
 	public function get_editor_supports() {
 		return array(
 			'title',
-			'editor',
-			'author',
-			'thumbnail',
-			'excerpt',
 		);
 	}
 }

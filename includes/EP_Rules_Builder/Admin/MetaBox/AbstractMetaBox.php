@@ -16,7 +16,7 @@ abstract class AbstractMetaBox implements \EP_Rules_Builder\RegistrationInterfac
 	 *
 	 * @var string
 	 */
-	const META_BOX_PREFIX = 'ep_';
+	const METABOX_PREFIX = 'ep_';
 
 	/**
 	 * Determines if the metabox should be registered.
@@ -33,4 +33,11 @@ abstract class AbstractMetaBox implements \EP_Rules_Builder\RegistrationInterfac
 	 * @return bool
 	 */
 	abstract public function register();
+
+	/**
+	 * Initializes the metabox.
+	 *
+	 * @return void
+	 */
+	abstract public function get_metabox();
 }

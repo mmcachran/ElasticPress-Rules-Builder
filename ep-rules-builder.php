@@ -103,6 +103,12 @@ function ep_rules_builder_autorun() {
 		return;
 	}
 
+	// Bail early if plugin requirements are not met.
+	if ( ! ep_rules_builder_requirements_met() ) {
+		add_action( 'admin_notices', 'ep_rules_builder_requirements_notice' );
+		return;
+	}
+
 	$plugin = \EP_Rules_Builder\Plugin::get_instance();
 	$plugin->enable();
 }
@@ -118,6 +124,23 @@ function ep_rules_builder_autoload_notice() {
 
 	printf( '<div class="%1$s"><p>%2$s</p></div>', esc_html( $class ), wp_kses_post( $message ) );
 	error_log( $message ); // @codingStandardsIgnoreLine
+}
+
+/**
+ * Determines if requirements are met for this plugin.
+ *
+ * @return bool True if the plugin requirements are met, false otherwise.
+ */
+function ep_rules_builder_requirements_met() {
+	return true;
+}
+
+/**
+ * Displays notice if the plugin cannot be autoloaded.
+ *
+ * @return void
+ */
+function ep_rules_builder_requirements_notice() {
 }
 
 // Kick off the plugin.

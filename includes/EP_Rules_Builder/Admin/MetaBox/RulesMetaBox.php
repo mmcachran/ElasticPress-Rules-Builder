@@ -26,6 +26,38 @@ class RulesMetaBox extends AbstractMetaBox {
 	 * @return void
 	 */
 	public function register() {
-		wp_die( __LINE__ );
+		// Register the agenda metabox for all allowed post types.
+		foreach ( $this->get_post_types() as $post_type ) {
+			add_action( "fm_post_{$post_type}", [ $this, 'get_metabox' ] );
+		}
+	}
+
+	/**
+	 * Returns the post types this metabox should be registered to.
+	 *
+	 * @return array The post types to register the metabox to.
+	 */
+	protected function get_post_types() {
+		return [
+			EP_RULE_POST_TYPE,
+		];
+	}
+
+	/**
+	 * Get the name for the metabox.
+	 *
+	 * @return string The name for the base metabox.
+	 */
+	protected function get_metabox_name() {
+		return self::METABOX_PREFIX . 'rules';
+	}
+
+	/**
+	 * Initializes the metabox.
+	 *
+	 * @return void
+	 */
+	public function get_metabox() {
+		// Initialize metabox here...
 	}
 }
