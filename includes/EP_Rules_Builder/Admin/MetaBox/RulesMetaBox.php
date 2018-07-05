@@ -74,7 +74,7 @@ class RulesMetaBox extends AbstractMetaBox {
 					),
 
 					'triggers'  => $this->get_triggers_metabox(),
-					'actions'  => $this->get_actions_metabox(),
+					'actions'   => $this->get_actions_metabox(),
 				],
 			]
 		);
@@ -100,10 +100,10 @@ class RulesMetaBox extends AbstractMetaBox {
 				'extra_elements' => 0,
 				'children'       => [
 
-					'title'  => new \Fieldmanager_Textfield(
+					'title'    => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Title', 'ep-rules-builder' ),
-							'description'     => esc_html__( 'Title for the trigger.', 'ep-rules-builder' ),
+							'description'      => esc_html__( 'Title for the trigger.', 'ep-rules-builder' ),
 							'field_class'      => 'text',
 							'validation_rules' => [
 								'required' => false,
@@ -160,7 +160,7 @@ class RulesMetaBox extends AbstractMetaBox {
 					'title'  => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Title', 'ep-rules-builder' ),
-							'description'     => esc_html__( 'Title for the action.', 'ep-rules-builder' ),
+							'description'      => esc_html__( 'Title for the action.', 'ep-rules-builder' ),
 							'field_class'      => 'text',
 							'validation_rules' => [
 								'required' => false,
@@ -187,7 +187,7 @@ class RulesMetaBox extends AbstractMetaBox {
 						[
 							'label'            => esc_html__( 'Boost', 'ep-rules-builder' ),
 							'field_class'      => 'text',
-							'input_type' => 'number',
+							'input_type'       => 'number',
 							'validation_rules' => [
 								'required' => false,
 							],
@@ -195,18 +195,18 @@ class RulesMetaBox extends AbstractMetaBox {
 								'maxlength' => 80,
 								'size'      => 60,
 							],
-							'display_if' => [
-								'src' => 'action',
+							'display_if'       => [
+								'src'   => 'action',
 								'value' => 'boost',
 							],
 						]
 					),
 
-					'bury'  => new \Fieldmanager_Textfield(
+					'bury'   => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Bury', 'ep-rules-builder' ),
 							'field_class'      => 'text',
-							'input_type' => 'number',
+							'input_type'       => 'number',
 							'validation_rules' => [
 								'required' => false,
 							],
@@ -214,9 +214,27 @@ class RulesMetaBox extends AbstractMetaBox {
 								'maxlength' => 80,
 								'size'      => 60,
 							],
-							'display_if' => [
-								'src' => 'action',
+							'display_if'       => [
+								'src'   => 'action',
 								'value' => 'bury',
+							],
+						]
+					),
+
+					'hide'   => new \Fieldmanager_Textfield(
+						[
+							'label'            => esc_html__( 'Hide', 'ep-rules-builder' ),
+							'field_class'      => 'text',
+							'validation_rules' => [
+								'required' => false,
+							],
+							'attributes'       => [
+								'maxlength' => 80,
+								'size'      => 60,
+							],
+							'display_if'       => [
+								'src'   => 'action',
+								'value' => 'hide',
 							],
 						]
 					),
