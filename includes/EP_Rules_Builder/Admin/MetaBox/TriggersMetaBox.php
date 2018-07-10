@@ -1,6 +1,6 @@
 <?php
 /**
- * Class to create the rules metabox.
+ * Class to create the triggers metabox.
  *
  * @package ElasticPress Rules Builder
  */
@@ -8,9 +8,9 @@
 namespace EP_Rules_Builder\Admin\MetaBox;
 
 /**
- * Creates the rules metabox.
+ * Creates the triggers metabox.
  */
-class RulesMetaBox extends AbstractMetaBox {
+class TriggersMetaBox extends AbstractMetaBox {
 	/**
 	 * Determines if the metabox should be registered.
 	 *
@@ -62,25 +62,13 @@ class RulesMetaBox extends AbstractMetaBox {
 			[
 				'name'     => $this->get_metabox_name(),
 				'children' => [
-
-					'condition' => new \Fieldmanager_Select(
-						[
-							'label'   => esc_html__( 'Condition', 'ep-rules-builder' ),
-							'options' => [
-								'any' => __( 'Any (or)', 'ep-rules-builder' ),
-								'all' => __( 'All (and)', 'ep-rules-builder' ),
-							],
-						]
-					),
-
 					'triggers'  => $this->get_triggers_metabox(),
-					'actions'   => $this->get_actions_metabox(),
 				],
 			]
 		);
 
 		// Add the metabox.
-		$fm->add_meta_box( esc_html__( 'Rules', 'ep-rules-builder' ), $this->get_post_types() );
+		$fm->add_meta_box( esc_html__( 'Triggers', 'ep-rules-builder' ), $this->get_post_types() );
 	}
 
 	/**
@@ -133,109 +121,6 @@ class RulesMetaBox extends AbstractMetaBox {
 							'attributes'       => [
 								'maxlength' => 80,
 								'size'      => 60,
-							],
-						]
-					),
-				],
-			]
-		);
-	}
-
-	/**
-	 * Returns the actions metabox group.
-	 *
-	 * @return \Fieldmanager_Group The actions metabox group.
-	 */
-	protected function get_actions_metabox() {
-		return new \Fieldmanager_Group(
-			[
-				'label'          => esc_html__( 'Actions', 'ep-rules-builder' ),
-				'label_macro'    => array( 'Action: %s', 'title' ),
-				'add_more_label' => esc_html__( 'Add Another Action', 'ep-rules-builder' ),
-				'limit'          => 0,
-				'sortable'       => true,
-				'collapsible'    => true,
-				'extra_elements' => 0,
-				'children'       => [
-
-					'title'  => new \Fieldmanager_Textfield(
-						[
-							'label'            => esc_html__( 'Title', 'ep-rules-builder' ),
-							'description'      => esc_html__( 'Title for the action.', 'ep-rules-builder' ),
-							'field_class'      => 'text',
-							'validation_rules' => [
-								'required' => false,
-							],
-							'attributes'       => [
-								'maxlength' => 80,
-								'size'      => 60,
-							],
-						]
-					),
-
-					'action' => new \Fieldmanager_Select(
-						[
-							'label'   => esc_html__( 'Action', 'ep-rules-builder' ),
-							'options' => [
-								'boost' => esc_html__( 'Boost', 'ep-rules-builder' ),
-								'bury'  => esc_html__( 'Bury', 'ep-rules-builder' ),
-								'hide'  => esc_html__( 'Hide', 'ep-rules-builder' ),
-							],
-						]
-					),
-
-					'boost'  => new \Fieldmanager_Textfield(
-						[
-							'label'            => esc_html__( 'Boost', 'ep-rules-builder' ),
-							'field_class'      => 'text',
-							'input_type'       => 'number',
-							'validation_rules' => [
-								'required' => false,
-							],
-							'attributes'       => [
-								'maxlength' => 80,
-								'size'      => 60,
-							],
-							'display_if'       => [
-								'src'   => 'action',
-								'value' => 'boost',
-							],
-						]
-					),
-
-					'bury'   => new \Fieldmanager_Textfield(
-						[
-							'label'            => esc_html__( 'Bury', 'ep-rules-builder' ),
-							'field_class'      => 'text',
-							'input_type'       => 'number',
-							'validation_rules' => [
-								'required' => false,
-							],
-							'attributes'       => [
-								'maxlength' => 80,
-								'size'      => 60,
-							],
-							'display_if'       => [
-								'src'   => 'action',
-								'value' => 'bury',
-							],
-						]
-					),
-
-					'hide'   => new \Fieldmanager_Textfield(
-						[
-							'label'            => esc_html__( 'Hide', 'ep-rules-builder' ),
-							'field_class'      => 'text',
-							'validation_rules' => [
-								'required' => false,
-							],
-							'attributes'       => [
-								'maxlength' => 80,
-								'size'      => 60,
-							],
-							'display_if'       => [
-								'src'   => 'action',
-								'value' => 'hide',
 							],
 						]
 					),
