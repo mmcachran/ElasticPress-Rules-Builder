@@ -88,16 +88,19 @@ class GeneralMetaBox extends AbstractMetaBox {
 						]
 					),
 
-					'start_date' => new \Fieldmanager_Datepicker( [
-						'label'            => esc_html__( 'Start Date', 'ep-rules-builder' ),
-						'description'      => esc_html__( 'Date for the rule to start.', 'ep-rules-builder' ),
-					] ),
+					'start_date'  => new \Fieldmanager_Datepicker(
+						[
+							'label'       => esc_html__( 'Start Date', 'ep-rules-builder' ),
+							'description' => esc_html__( 'Date for the rule to start.', 'ep-rules-builder' ),
+						]
+					),
 
-
-					'end_date' => new \Fieldmanager_Datepicker( [
-						'label'            => esc_html__( 'End Date', 'ep-rules-builder' ),
-						'description'      => esc_html__( 'Date for the rule to end.', 'ep-rules-builder' ),
-					] ),
+					'end_date'    => new \Fieldmanager_Datepicker(
+						[
+							'label'       => esc_html__( 'End Date', 'ep-rules-builder' ),
+							'description' => esc_html__( 'Date for the rule to end.', 'ep-rules-builder' ),
+						]
+					),
 				],
 			]
 		);
