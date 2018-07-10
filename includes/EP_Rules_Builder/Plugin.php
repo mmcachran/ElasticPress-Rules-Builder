@@ -93,11 +93,6 @@ class Plugin {
 	 * @return void
 	 */
 	public function init() {
-		$this->support = [];
-
-		// Register objects.
-		$this->register_objects( $this->support );
-
 		// Register the taxonomy factory.
 		$this->taxonomy_factory = new Taxonomy\TaxonomyFactory();
 		$this->taxonomy_factory->build_all();
@@ -110,6 +105,14 @@ class Plugin {
 		if ( is_admin() ) {
 			$this->init_admin_support();
 		}
+
+		// Supporting classes for the plugin that should be registered on the init hook.
+		$this->support = [
+			new \EP_Rules_Builder\Search\SearchSupport(),
+		];
+
+		// Register objects.
+		$this->register_objects( $this->support );
 	}
 
 	/**
