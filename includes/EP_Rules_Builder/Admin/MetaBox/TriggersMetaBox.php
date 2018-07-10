@@ -62,7 +62,7 @@ class TriggersMetaBox extends AbstractMetaBox {
 			[
 				'name'     => $this->get_metabox_name(),
 				'children' => [
-					'triggers'  => $this->get_triggers_metabox(),
+					'triggers' => $this->get_triggers_metabox(),
 				],
 			]
 		);

@@ -62,7 +62,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 			[
 				'name'     => $this->get_metabox_name(),
 				'children' => [
-					'actions'   => $this->get_actions_metabox(),
+					'actions' => $this->get_actions_metabox(),
 				],
 			]
 		);
