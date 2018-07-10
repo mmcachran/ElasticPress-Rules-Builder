@@ -28,8 +28,8 @@ class MenuSupport implements \EP_Rules_Builder\RegistrationInterface {
 	public function register() {
 		add_submenu_page(
 			'elasticpress',
-			esc_html__( 'EP Rules Builder', 'ep-rules-builder' ),
-			esc_html__( 'EP Rules Builder', 'ep-rules-builder' ),
+			esc_html__( 'Rules Builder', 'ep-rules-builder' ),
+			esc_html__( 'Rules Builder', 'ep-rules-builder' ),
 			'manage_options',
 			'ep-rules-builder',
 			[ $this, 'screen_options' ]
