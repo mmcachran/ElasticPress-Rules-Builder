@@ -103,7 +103,7 @@ class RulesMetaBox extends AbstractMetaBox {
 					'title'    => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Title', 'ep-rules-builder' ),
-							'description'      => esc_html__( 'Title for the trigger.', 'ep-rules-builder' ),
+							'description'      => esc_html__( 'Title for the trigger (only used for reference).', 'ep-rules-builder' ),
 							'field_class'      => 'text',
 							'validation_rules' => [
 								'required' => false,
@@ -125,6 +125,7 @@ class RulesMetaBox extends AbstractMetaBox {
 					'keyword'  => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Keyword', 'ep-rules-builder' ),
+							'description'      => esc_html__( 'The keyword for the search to activate the trigger.', 'ep-rules-builder' ),
 							'field_class'      => 'text',
 							'validation_rules' => [
 								'required' => false,
