@@ -63,16 +63,6 @@ class GeneralMetaBox extends AbstractMetaBox {
 				'name'     => $this->get_metabox_name(),
 				'children' => [
 
-					'condition'   => new \Fieldmanager_Select(
-						[
-							'label'   => esc_html__( 'Condition', 'ep-rules-builder' ),
-							'options' => [
-								'any' => __( 'Any (or)', 'ep-rules-builder' ),
-								'all' => __( 'All (and)', 'ep-rules-builder' ),
-							],
-						]
-					),
-
 					'description' => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Description', 'ep-rules-builder' ),
