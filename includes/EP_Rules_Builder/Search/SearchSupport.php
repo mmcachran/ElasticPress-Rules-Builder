@@ -32,7 +32,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 */
 	public function can_register() {
 		// Determine if this is the search page.
-		$can_integrate = is_search();
+		$can_integrate = ! is_admin();
 
 		/**
 		 * Filter for modifying whethor or not the search integration should be allowed.
