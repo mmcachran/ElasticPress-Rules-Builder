@@ -62,7 +62,7 @@ class TriggersMetaBox extends AbstractMetaBox {
 			[
 				'name'     => $this->get_metabox_name(),
 				'children' => [
-					'condition'   => new \Fieldmanager_Select(
+					'condition' => new \Fieldmanager_Select(
 						[
 							'label'   => esc_html__( 'Condition', 'ep-rules-builder' ),
 							'options' => [
@@ -71,7 +71,7 @@ class TriggersMetaBox extends AbstractMetaBox {
 							],
 						]
 					),
-					'triggers' => $this->get_triggers_metabox(),
+					'triggers'  => $this->get_triggers_metabox(),
 				],
 			]
 		);
