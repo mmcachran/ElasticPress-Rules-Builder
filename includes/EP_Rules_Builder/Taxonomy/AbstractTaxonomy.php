@@ -14,6 +14,8 @@ abstract class AbstractTaxonomy implements \EP_Rules_Builder\RegistrationInterfa
 	/**
 	 * Determines if the taxonomy should be registered.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return bool True if the object should be registered, false otherwise.
 	 */
 	public function can_register() {
@@ -22,6 +24,8 @@ abstract class AbstractTaxonomy implements \EP_Rules_Builder\RegistrationInterfa
 
 	/**
 	 * Registration method for the object.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -35,6 +39,8 @@ abstract class AbstractTaxonomy implements \EP_Rules_Builder\RegistrationInterfa
 
 	/**
 	 * Get the options for the taxonomy.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array Options for the taxonomy.
 	 */
@@ -50,6 +56,8 @@ abstract class AbstractTaxonomy implements \EP_Rules_Builder\RegistrationInterfa
 
 	/**
 	 * Get the labels for the taxonomy.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array Labels for the taxonomy.
 	 */
@@ -104,6 +112,8 @@ abstract class AbstractTaxonomy implements \EP_Rules_Builder\RegistrationInterfa
 	/**
 	 * Setting the post types to an empty array will ensure no post type is
 	 * registered with this taxonomy.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array Post types to register this taxonomy to.
 	 */

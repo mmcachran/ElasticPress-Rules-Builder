@@ -10,6 +10,8 @@ namespace EP_Rules_Builder;
 /**
  * Helper function for including a template.
  *
+ * @since 0.1.0
+ *
  * @param string $template The template name to include.
  * @param array  $params    An array of parameters to include with the template.
  * @param array  $opts      Options for including the template.

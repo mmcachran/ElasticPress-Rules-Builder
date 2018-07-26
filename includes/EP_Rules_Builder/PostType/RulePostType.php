@@ -14,6 +14,8 @@ class RulePostType extends AbstractPostType {
 	/**
 	 * Returns the name of the post type.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return string The name of the post type.
 	 */
 	public function get_name() {
@@ -22,6 +24,8 @@ class RulePostType extends AbstractPostType {
 
 	/**
 	 * Returns the singular name for the post type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return string The singular name for the post type.
 	 */
@@ -32,6 +36,8 @@ class RulePostType extends AbstractPostType {
 	/**
 	 * Returns the plural name for the post type.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return string The plural name for the post type.
 	 */
 	public function get_plural_label() {
@@ -40,6 +46,8 @@ class RulePostType extends AbstractPostType {
 
 	/**
 	 * Returns the supported taxonomies for the post type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array The supported taxonomies for the post type.
 	 */
@@ -51,6 +59,8 @@ class RulePostType extends AbstractPostType {
 
 	/**
 	 * Options for the post type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array Options for the post type.
 	 */
@@ -79,6 +89,8 @@ class RulePostType extends AbstractPostType {
 	/**
 	 * The Editor Supports defaults. Wired to 'supports' option of
 	 * register_post_type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array Editor supports for the CPT.
 	 */

@@ -14,12 +14,16 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 	/**
 	 * Get the post type name.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return string
 	 */
 	abstract public function get_name();
 
 	/**
 	 * Get the singular post type label.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return string
 	 */
@@ -28,12 +32,16 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 	/**
 	 * Get the plural post type label.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return string
 	 */
 	abstract public function get_plural_label();
 
 	/**
 	 * Determines if the post type should be registered.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return bool True if the post type should be registered, false otherwise.
 	 */
@@ -44,6 +52,8 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 	/**
 	 * Registers a post type and associates it's taxonomies.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return void
 	 */
 	public function register() {
@@ -53,6 +63,8 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 
 	/**
 	 * Get the options for the post type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array Options for the custom post type.
 	 */
@@ -69,6 +81,8 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 
 	/**
 	 * Get the labels for the post type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array Labels for the Custom Post Type.
 	 */
@@ -114,6 +128,8 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 	/**
 	 * Registers the current post type with WordPress.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return void
 	 */
 	public function register_post_type() {
@@ -125,6 +141,8 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 
 	/**
 	 * Registers the taxonomies declared with the current post type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -150,6 +168,8 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 	 * The Editor Supports defaults. Wired to 'supports' option of
 	 * register_post_type.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return array Editor supports for the CPT.
 	 */
 	public function get_editor_supports() {
@@ -164,6 +184,8 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 
 	/**
 	 * Determine if a post is in this post type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param  int|\WP_Post $post The post to check.
 	 * @return bool            True if the post is in the post type, false otherwise.

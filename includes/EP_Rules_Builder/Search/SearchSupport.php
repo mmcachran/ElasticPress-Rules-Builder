@@ -14,6 +14,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	/**
 	 * Holds current search term
 	 *
+	 * @since 0.1.0
+	 *
 	 * @var string
 	 */
 	protected $search_term = false;
@@ -21,12 +23,16 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	/**
 	 * Holds function scores for boost/bury.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @var array
 	 */
 	protected $function_scores = [];
 
 	/**
 	 * Determines if the metabox should be registered.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return bool True if the metabox should be registered, false otherwise.
 	 */
@@ -46,6 +52,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 	/**
 	 * Register hooks for the metabox.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -74,5 +82,51 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		// Do things with the query...
 
 		return $formatted_args;
+	}
+
+	/**
+	 * Returns a list of valid search rules.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return array A list of valid search rules.
+	 */
+	protected function get_search_rules() {
+		// Holds the response for this method.
+		$response = [];
+
+		/**
+		 * Get the number of posts per page.
+		 *
+		 * Modify the number of posts per page.
+		 *
+		 * @param int $posts_per_page The default posts per page.
+		 */
+		$posts_per_page = apply_filters( 'ep_rules_builder_rules_limit', 500 );
+
+		// Arguments for the search rules query.
+		$args = [
+			'post_type'      => EP_RULE_POST_TYPE,
+			'post_status'    => 'publish',
+			'posts_per_page' => $posts_per_page,
+		];
+
+		$rules = new \WP_Query( $args );
+
+		// Bail early if no posts.
+		if ( ! $rules->have_posts() ) {
+			return $response;
+		}
+
+		// Loop through rules to determine if each is valid.
+		foreach ( $rules->posts as $rule ) {
+			// Skip if the rule is not valid.
+			if ( ! $this->is_valid_rule( $rule ) ) {
+				continue;
+			}
+
+			// Add the rule to our response.
+			$results[]
+		}
 	}
 }

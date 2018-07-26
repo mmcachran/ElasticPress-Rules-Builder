@@ -10,6 +10,8 @@ namespace EP_Rules_Builder;
 /**
  * Returns the singleton instance of the plugin.
  *
+ * @since 0.1.0
+ *
  * @return Plugin
  */
 function get_plugin() {
@@ -18,6 +20,8 @@ function get_plugin() {
 
 /**
  * Retrieves the plugin's version.
+ *
+ * @since 0.1.0
  *
  * @return float The plugin's version.
  */
@@ -35,6 +39,8 @@ function get_plugin_version() {
 
 /**
  * Get a property from either an object or an array.
+ *
+ * @since 0.1.0
  *
  * @param  string       $key        The name of the property to retrieve.
  * @param  array|object $data The object to retrieve the property for.
@@ -56,6 +62,8 @@ function get_property( $key, $data, $default = null ) {
 /**
  * Get a property from an array.
  *
+ * @since 0.1.0
+ *
  * @param string $key     The name of the property to retrieve.
  * @param array  $data    The array to retrieve the property for.
  * @param mixed  $default The default if the property is empty or not found.
@@ -68,6 +76,8 @@ function get_array_property( $key, $data, $default = null ) {
 /**
  * Get a property from an object.
  *
+ * @since 0.1.0
+ *
  * @param string $key     The name of the property to retrieve.
  * @param object $data    The object to retrieve the property for.
  * @param mixed  $default The default if the property is empty or not found.
@@ -79,6 +89,8 @@ function get_object_property( $key, $data, $default = null ) {
 
 /**
  * Get a post object, but only if the ID is not zero. Use this instead of WordPress' get_post( $post ) when you don't want the global post returned when a valid post or post ID isn't given.
+ *
+ * @since 0.1.0
  *
  * @param  int|\WP_Post $post The post ID or object.
  * @return \WP_Post|null
@@ -94,6 +106,8 @@ function get_post( $post ) {
 /**
  * Determine if the object is a post object.
  *
+ * @since 0.1.0
+ *
  * @param  \WP_Post $post The post object.
  * @return boolean
  */
@@ -103,6 +117,8 @@ function is_post( $post ) {
 
 /**
  * Determine if the object is a term object.
+ *
+ * @since 0.1.0
  *
  * @param  \WP_Term $term The object.
  * @return boolean
@@ -114,6 +130,8 @@ function is_term( $term ) {
 /**
  * Determine if a post ID is valid.
  *
+ * @since 0.1.0
+ *
  * @param  int|string $post_id The post ID.
  * @return boolean
  */
@@ -123,6 +141,8 @@ function is_valid_post_id( $post_id ) {
 
 /**
  * Logs a message to the debug log.
+ *
+ * @since 0.1.0
  *
  * @param mixed $message The message to log to the debug.log.
  * @return bool True if the message was successfully added, false otherwise.
@@ -139,6 +159,8 @@ function debug( $message ) {
 
 /**
  * Check if a URL is a 404.
+ *
+ * @since 0.1.0
  *
  * @param string $url The URL to check.
  * @return bool       True if the URL is not a 404, false otherwise.

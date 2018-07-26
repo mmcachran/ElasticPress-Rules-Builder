@@ -14,6 +14,8 @@ class TriggersMetaBox extends AbstractMetaBox {
 	/**
 	 * Determines if the metabox should be registered.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return bool True if the metabox should be registered, false otherwise.
 	 */
 	public function can_register() {
@@ -22,6 +24,8 @@ class TriggersMetaBox extends AbstractMetaBox {
 
 	/**
 	 * Register hooks for the metabox.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -35,6 +39,8 @@ class TriggersMetaBox extends AbstractMetaBox {
 	/**
 	 * Returns the post types this metabox should be registered to.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return array The post types to register the metabox to.
 	 */
 	protected function get_post_types() {
@@ -46,6 +52,8 @@ class TriggersMetaBox extends AbstractMetaBox {
 	/**
 	 * Get the name for the metabox.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return string The name for the base metabox.
 	 */
 	protected function get_metabox_name() {
@@ -54,6 +62,8 @@ class TriggersMetaBox extends AbstractMetaBox {
 
 	/**
 	 * Initializes the metabox.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -82,6 +92,8 @@ class TriggersMetaBox extends AbstractMetaBox {
 
 	/**
 	 * Returns the triggers metabox group.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return \Fieldmanager_Group The triggers metabox group.
 	 */
@@ -139,9 +151,11 @@ class TriggersMetaBox extends AbstractMetaBox {
 	}
 
 	/**
-	 * Get all operators
+	 * Get all operators.
 	 *
-	 * @return array  operator options
+	 * @since 0.1.0
+	 *
+	 * @return array  Operator options.
 	 */
 	public function get_operator_options() {
 		// get numeric operators.
@@ -164,9 +178,11 @@ class TriggersMetaBox extends AbstractMetaBox {
 	}
 
 	/**
-	 * Get numeric operator
+	 * Get numeric operator.
 	 *
-	 * @return array  operator options
+	 * @since 0.1.0
+	 *
+	 * @return array  Operator options.
 	 */
 	public function get_numeric_operator_options() {
 		return [
@@ -180,9 +196,11 @@ class TriggersMetaBox extends AbstractMetaBox {
 	}
 
 	/**
-	 * Get string operators
+	 * Get string operators.
 	 *
-	 * @return array  operator options
+	 * @since 0.1.0
+	 *
+	 * @return array  Operator options.
 	 */
 	public function get_string_operator_options() {
 		return [

@@ -28,12 +28,16 @@ class TaxonomyFactory implements \EP_Rules_Builder\FactoryInterface {
 	/**
 	 * Holds previously created taxonomy instances.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @var array
 	 */
 	public $taxonomies = [];
 
 	/**
 	 * Mapping for taxonomies to classes.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @var array
 	 */
@@ -45,6 +49,8 @@ class TaxonomyFactory implements \EP_Rules_Builder\FactoryInterface {
 	 * Builds all supported taxonomies. This is bound to the 'init' hook
 	 * to allow both frontend and backend to get these taxonomies.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return void
 	 */
 	public function build_all() {
@@ -53,6 +59,8 @@ class TaxonomyFactory implements \EP_Rules_Builder\FactoryInterface {
 
 	/**
 	 * Conditionally builds a taxonomy or returns the stored instance.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param string $taxonomy The taxonomy name.
 	 * @return \EP_Rules_Builder\AbstractTaxonomy The taxonomy instance.
@@ -73,6 +81,8 @@ class TaxonomyFactory implements \EP_Rules_Builder\FactoryInterface {
 
 	/**
 	 * Instantiates and returns an instance for the specified taxonomy.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param string $taxonomy           The taxonomy name.
 	 * @return \EP_Rules_Builder\AbstractTaxonomy The taxonomy object.
@@ -104,6 +114,8 @@ class TaxonomyFactory implements \EP_Rules_Builder\FactoryInterface {
 	/**
 	 * Returns a list of supported taxonomies.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return array List of supported taxonomy names.
 	 */
 	protected function get_supported_taxonomies() {
@@ -112,6 +124,8 @@ class TaxonomyFactory implements \EP_Rules_Builder\FactoryInterface {
 
 	/**
 	 * Checks if the taxonomy specified was previously built.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param string $taxonomy The taxonomy name.
 	 * @return bool True if the taxonomy was previously built, false otherwise.

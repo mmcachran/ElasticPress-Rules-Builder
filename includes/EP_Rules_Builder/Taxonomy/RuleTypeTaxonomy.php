@@ -23,6 +23,8 @@ class RuleTypeTaxonomy extends AbstractTaxonomy {
 	/**
 	 * Returns the name of the taxonomy.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return string The name of the taxonomy.
 	 */
 	public function get_name() {
@@ -31,6 +33,8 @@ class RuleTypeTaxonomy extends AbstractTaxonomy {
 
 	/**
 	 * Returns the singular name for the taxonomy.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return string The singular name for the taxonomy.
 	 */
@@ -41,6 +45,8 @@ class RuleTypeTaxonomy extends AbstractTaxonomy {
 	/**
 	 * Returns the plural name for taxonomy.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return string The plural name for the taxonomy.
 	 */
 	public function get_plural_label() {
@@ -49,6 +55,8 @@ class RuleTypeTaxonomy extends AbstractTaxonomy {
 
 	/**
 	 * Options for the taxonomy.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return array Options for the taxonomy.
 	 */

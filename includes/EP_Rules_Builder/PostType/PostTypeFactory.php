@@ -28,12 +28,16 @@ class PostTypeFactory implements \EP_Rules_Builder\FactoryInterface {
 	/**
 	 * Holds previously created post type instances.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @var array
 	 */
 	public $post_types = [];
 
 	/**
 	 * Mapping for post types to classes.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @var array
 	 */
@@ -45,6 +49,8 @@ class PostTypeFactory implements \EP_Rules_Builder\FactoryInterface {
 	 * Builds all supported post types. This is bound to the 'init' hook
 	 * to allow both frontend and backend to get these post types.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return void
 	 */
 	public function build_all() {
@@ -53,6 +59,8 @@ class PostTypeFactory implements \EP_Rules_Builder\FactoryInterface {
 
 	/**
 	 * Conditionally builds a post type or returns the stored instance.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param string $post_type The post type name.
 	 * @return \EP_Rules_Builder\AbstractPostType The post type instance.
@@ -73,6 +81,8 @@ class PostTypeFactory implements \EP_Rules_Builder\FactoryInterface {
 
 	/**
 	 * Instantiates and returns an instance for the specified post type.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param string $post_type          The post type name.
 	 * @return \EP_Rules_Builder\AbstractPostType The post type object.
@@ -105,6 +115,8 @@ class PostTypeFactory implements \EP_Rules_Builder\FactoryInterface {
 	/**
 	 * Returns a list of supported post types.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return array List of supported post type names.
 	 */
 	protected function get_supported_post_types() {
@@ -113,6 +125,8 @@ class PostTypeFactory implements \EP_Rules_Builder\FactoryInterface {
 
 	/**
 	 * Checks if the post type specified was previously built.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param string $post_type The post type name.
 	 * @return bool True if the post type was previously built, false otherwise.

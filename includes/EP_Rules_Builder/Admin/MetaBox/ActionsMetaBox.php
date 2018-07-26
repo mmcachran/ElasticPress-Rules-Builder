@@ -14,6 +14,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 	/**
 	 * Determines if the metabox should be registered.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return bool True if the metabox should be registered, false otherwise.
 	 */
 	public function can_register() {
@@ -22,6 +24,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 
 	/**
 	 * Register hooks for the metabox.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -35,6 +39,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 	/**
 	 * Returns the post types this metabox should be registered to.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return array The post types to register the metabox to.
 	 */
 	protected function get_post_types() {
@@ -46,6 +52,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 	/**
 	 * Get the name for the metabox.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return string The name for the base metabox.
 	 */
 	protected function get_metabox_name() {
@@ -54,6 +62,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 
 	/**
 	 * Initializes the metabox.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -73,6 +83,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 
 	/**
 	 * Returns the actions metabox group.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return \Fieldmanager_Group The actions metabox group.
 	 */

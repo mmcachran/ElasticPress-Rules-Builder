@@ -24,12 +24,16 @@ class Plugin {
 	/**
 	 * Holds a single instance of this class.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @var \EP_Rules_Builder\Plugin
 	 */
 	private static $singleton_instance = null;
 
 	/**
 	 * Holds admin support objects.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @var array
 	 */
@@ -38,12 +42,16 @@ class Plugin {
 	/**
 	 * Holds admin menu support objects.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @var array
 	 */
 	protected $admin_menu_support = [];
 
 	/**
 	 * Holds support objects.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @var array
 	 */
@@ -52,6 +60,8 @@ class Plugin {
 	/**
 	 * Holds an instance of post type factory object.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @var PostType\PostTypeFactory
 	 */
 	protected $post_type_factory = null;
@@ -59,12 +69,16 @@ class Plugin {
 	/**
 	 * Holds an instance of taxonomy factory object.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @var Taxonomy\TaxonomyFactory
 	 */
 	protected $taxonomy_factory = null;
 
 	/**
 	 * Returns a single instance of this class.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return \EP_Rules_Builder\Plugin A singleton instance of this class.
 	 */
@@ -79,6 +93,8 @@ class Plugin {
 	/**
 	 * Starts the plugin by subscribing to the WordPress lifecycle hooks.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return void
 	 */
 	public function enable() {
@@ -89,6 +105,8 @@ class Plugin {
 
 	/**
 	 * Runs on init WP lifecycle hook.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -118,6 +136,8 @@ class Plugin {
 	/**
 	 * Initializes admin support.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return void
 	 */
 	protected function init_admin_support() {
@@ -134,6 +154,8 @@ class Plugin {
 	/**
 	 * Runs on the admin_init WP lifecycle hook.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @return void
 	 */
 	public function init_admin() {
@@ -142,6 +164,8 @@ class Plugin {
 
 	/**
 	 * Runs on the init_admin_menu WP lifecycle hook.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
@@ -157,6 +181,8 @@ class Plugin {
 	/**
 	 * Registers an array of objects.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @param array $objects The array of objects to register.
 	 * @return void
 	 */
@@ -166,6 +192,8 @@ class Plugin {
 
 	/**
 	 * Registers a single object.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param object $object The object to register.
 	 * @return void

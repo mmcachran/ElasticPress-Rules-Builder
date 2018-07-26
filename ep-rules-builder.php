@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ElasticPress Rules Builder
  * Description: Control (boost, bury, hide) search results based on seach keywords.
- * Version:     0.1
+ * Version:     0.1.0
  * Author:      mmcachran
  * Author URI:  https://github.com/mmcachran/ElasticPress-Rules-Builder
  * License:     GPLv2 or later
@@ -21,6 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Wrapper around PHP's define function. The defined constant is
  * ignored if it has already been defined. This allows the
  * config.local.php to override any constant in config.php.
+ *
+ * @since 0.1.0
  *
  * @param string $name  The constant name.
  * @param mixed  $value The constant value.
@@ -49,6 +51,8 @@ require_once __DIR__ . '/config.php';
 /**
  * Loads the EP Rules Builder PHP autoloader if possible.
  *
+ * @since 0.1.0
+ *
  * @return bool True or false if autoloading was successful.
  */
 function ep_rules_builder_autoload() {
@@ -66,6 +70,8 @@ function ep_rules_builder_autoload() {
  * test environments we prevent autoloading of the plugin to prevent
  * global pollution and for better performance.
  *
+ * @since 0.1.0
+ *
  * @return bool True if the plugin can be autoloaded, false otherwise.
  */
 function ep_rules_builder_can_autoload() {
@@ -79,7 +85,9 @@ function ep_rules_builder_can_autoload() {
 }
 
 /**
- * Default is Composer's autoloader
+ * Default is Composer's autoloader.
+ *
+ * @since 0.1.0
  *
  * @return string The path to the composer autoloader.
  */
@@ -93,6 +101,8 @@ function ep_rules_builder_autoloader() {
  *
  * If autoloading failed an admin notice is shown and logged to
  * error_log.
+ *
+ * @since 0.1.0
  *
  * @return void
  */
@@ -116,6 +126,8 @@ function ep_rules_builder_autorun() {
 /**
  * Displays notice if the plugin cannot be autoloaded.
  *
+ * @since 0.1.0
+ *
  * @return void
  */
 function ep_rules_builder_autoload_notice() {
@@ -129,6 +141,8 @@ function ep_rules_builder_autoload_notice() {
 /**
  * Determines if requirements are met for this plugin.
  *
+ * @since 0.1.0
+ *
  * @return bool True if the plugin requirements are met, false otherwise.
  */
 function ep_rules_builder_requirements_met() {
@@ -137,6 +151,8 @@ function ep_rules_builder_requirements_met() {
 
 /**
  * Displays notice if the plugin cannot be autoloaded.
+ *
+ * @since 0.1.0
  *
  * @return void
  */

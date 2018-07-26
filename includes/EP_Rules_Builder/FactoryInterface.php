@@ -14,6 +14,8 @@ interface FactoryInterface {
 	/**
 	 * Determines if the object should be built.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @param string $name The name of the object to build.
 	 * @return object The base object.
 	 */
@@ -22,6 +24,8 @@ interface FactoryInterface {
 	/**
 	 * Instantiates and returns an instance of the object being built.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @param string $name The name of the object to build.
 	 * @return object An instance of the object being built.
 	 */
@@ -29,6 +33,8 @@ interface FactoryInterface {
 
 	/**
 	 * Builds all supported objects.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @return void
 	 */
