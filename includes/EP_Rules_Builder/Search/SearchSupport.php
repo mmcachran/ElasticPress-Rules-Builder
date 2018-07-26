@@ -136,6 +136,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			$results[] = $rule_id;
 		}
 
+		var_dump( $results ); die;
+
 		return $results;
 	}
 
@@ -148,6 +150,36 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @return bool        True if the rule is valid, false otherwise.
 	 */
 	protected function is_valid_rule( int $rule_id ) {
-		var_dump( $rule_id ); die;
+		// Get rule general data from meta.
+		$rule_data = get_post_meta( $rule_id, METABOX_PREFIX . 'general', true );
+
+		// Bail early if no meta.
+		if ( empty( $rule_data ) ) {
+			return false;
+		}
+
+		// Get the start and end dates for this rule.
+		$start_date = ! empty( $rule_data['start_date'] ) ? intval( $rule_data['start_date'] ) : false;
+		$end_date   = ! empty( $rule_data['end_date'] ) ? intval( $rule_data['end_date'] ) : false;
+		$now        = strtotime( 'now' );
+
+		// Check start date.
+		if ( ! empty( $start_date ) ) {
+			// Bail early if we haven't reached the start date yet.
+			if ( $now < $start_date ) {
+				return false;
+			}
+		}
+
+		// Check end date.
+		if ( ! empty( $end_date ) ) {
+			// Bail early if we've already reached the end date.
+			if ( $now > $end_date ) {
+				return false;
+			}
+		}
+
+		// This is a valid rule.
+		return true;
 	}
 }
