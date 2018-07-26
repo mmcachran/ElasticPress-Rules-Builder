@@ -79,6 +79,9 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		// Save search term in a class property for later use.
 		$this->search_term = $args['s'];
 
+		// Fetch valid search rules for the query.
+		$rules = $this->get_search_rules();
+
 		// Do things with the query...
 		return $formatted_args;
 	}
@@ -123,14 +126,14 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		}
 
 		// Loop through rules to determine if each is valid.
-		foreach ( $rules->posts as $rule ) {
+		foreach ( $rules->posts as $rule_id ) {
 			// Skip if the rule is not valid.
-			if ( ! $this->is_valid_rule( $rule ) ) {
+			if ( ! $this->is_valid_rule( $rule_id ) ) {
 				continue;
 			}
 
 			// Add the rule to our response.
-			$results[] = $rule;
+			$results[] = $rule_id;
 		}
 
 		return $results;
@@ -142,5 +145,9 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @since 0.1.0
 	 *
 	 * @param int $rule_id The rule to test.
+	 * @return bool        True if the rule is valid, false otherwise.
 	 */
+	protected function is_valid_rule( int $rule_id ) {
+		var_dump( $rule_id ); die;
+	}
 }

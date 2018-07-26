@@ -12,15 +12,6 @@ namespace EP_Rules_Builder\Admin\MetaBox;
  */
 abstract class AbstractMetaBox implements \EP_Rules_Builder\RegistrationInterface {
 	/**
-	 * The prefix for this metabox.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @var string
-	 */
-	const METABOX_PREFIX = 'ep_';
-
-	/**
 	 * Determines if the metabox should be registered.
 	 *
 	 * @since 0.1.0

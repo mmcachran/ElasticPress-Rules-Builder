@@ -57,7 +57,7 @@ class TriggersMetaBox extends AbstractMetaBox {
 	 * @return string The name for the base metabox.
 	 */
 	protected function get_metabox_name() {
-		return self::METABOX_PREFIX . 'rules';
+		return METABOX_PREFIX . 'rules';
 	}
 
 	/**
