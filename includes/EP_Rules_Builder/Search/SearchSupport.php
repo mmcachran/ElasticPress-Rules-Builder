@@ -109,6 +109,11 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			'post_type'      => EP_RULE_POST_TYPE,
 			'post_status'    => 'publish',
 			'posts_per_page' => $posts_per_page,
+			'ep_integrate'   => false,
+			'no_found_rows'  => true,
+			'fields'         => 'ids',
+			'update_post_meta_cache' => true,
+			'update_post_term_cache' => true,
 		];
 
 		$rules = new \WP_Query( $args );
@@ -126,7 +131,17 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			}
 
 			// Add the rule to our response.
-			$results[]
+			$results[] = $rule;
 		}
+
+		return $results;
 	}
+
+	/**
+	 * Determine if a rule is valid.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param int $rule_id The rule to test.
+	 */
 }
