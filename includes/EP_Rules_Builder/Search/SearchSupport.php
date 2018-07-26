@@ -150,6 +150,21 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @return bool        True if the rule is valid, false otherwise.
 	 */
 	protected function is_valid_rule( int $rule_id ) {
+		// Bail early if the rule isn't in a valid date range.
+		if ( ! $this->is_rule_dates_valid( $rule_id ) ) {
+			return false;
+		}
+	}
+
+	/**
+	 * Determine if a rule is in the valid date range..
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param int $rule_id The rule to test.
+	 * @return bool        True if the rule is valid, false otherwise.
+	 */
+	protected function is_rule_dates_valid( int $rule_id ) {
 		// Get rule general data from meta.
 		$rule_data = get_post_meta( $rule_id, METABOX_PREFIX . 'general', true );
 
