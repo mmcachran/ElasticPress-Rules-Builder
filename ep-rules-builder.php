@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: ElasticPress Rules Builder
- * Description: Control (boost, bury, hide) search results based on seach keywords.
+ * Description: Control (boost, bury, hide) search results based on search keywords.
  * Version:     0.1.0
  * Author:      mmcachran
  * Author URI:  https://github.com/mmcachran/ElasticPress-Rules-Builder
