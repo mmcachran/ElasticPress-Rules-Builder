@@ -80,7 +80,6 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		$this->search_term = $args['s'];
 
 		// Do things with the query...
-
 		return $formatted_args;
 	}
 
@@ -106,12 +105,12 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 		// Arguments for the search rules query.
 		$args = [
-			'post_type'      => EP_RULE_POST_TYPE,
-			'post_status'    => 'publish',
-			'posts_per_page' => $posts_per_page,
-			'ep_integrate'   => false,
-			'no_found_rows'  => true,
-			'fields'         => 'ids',
+			'post_type'              => EP_RULE_POST_TYPE,
+			'post_status'            => 'publish',
+			'posts_per_page'         => $posts_per_page,
+			'ep_integrate'           => false,
+			'no_found_rows'          => true,
+			'fields'                 => 'ids',
 			'update_post_meta_cache' => true,
 			'update_post_term_cache' => true,
 		];

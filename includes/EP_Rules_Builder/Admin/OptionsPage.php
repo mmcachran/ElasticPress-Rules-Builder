@@ -19,8 +19,8 @@ class OptionsPage implements \EP_Rules_Builder\RegistrationInterface {
 	 * @return bool True if the object should be registered, false otherwise.
 	 */
 	public function can_register() {
-        return is_admin();
-    }
+		return is_admin();
+	}
 
 	/**
 	 * Registration method for the object.
@@ -30,6 +30,6 @@ class OptionsPage implements \EP_Rules_Builder\RegistrationInterface {
 	 * @return void
 	 */
 	public function register() {
-        register_setting( 'ep_rules_builder', 'ep_rules_builder', [ $this, '\sanitize_settings' ] );
-    }
+		register_setting( 'ep_rules_builder', 'ep_rules_builder', [ $this, '\sanitize_settings' ] );
+	}
 }
