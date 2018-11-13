@@ -12,4 +12,3 @@ Enable inline scripting with the following in Elasticsearch configuration. If El
 script.allowed_types: inline
 script.allowed_contexts: search
 ```
-

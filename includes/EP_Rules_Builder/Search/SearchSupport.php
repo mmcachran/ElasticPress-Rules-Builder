@@ -497,13 +497,12 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 */
 	protected function add_boost_or_bury( $action, $formatted_args, $type = 'boost' ) {
 		// Check for dynamics scripting.
-		//if ( $this->plugin->dynamic_scripting ) {
+		// if ( $this->plugin->dynamic_scripting ) {
 			$formatted_args = $this->add_dynamic_boost_or_bury( $action, $formatted_args, $type );
-		//} else {
+		// } else {
 			// Add non-dynamic to make sure results exist.
-			//$formatted_args = $this->add_non_dynamic_boost_or_bury( $action, $formatted_args, $type );
-		//}
-
+			// $formatted_args = $this->add_non_dynamic_boost_or_bury( $action, $formatted_args, $type );
+		// }
 		return $formatted_args;
 	}
 
@@ -514,8 +513,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 *
 	 * @param  array  $action         Action configuration.
 	 * @param  array  $formatted_args Formatted search args.
-	 * @param  string $type 		 Type to apply (boost or bury).
-	 * @return array                 New formatted search args.
+	 * @param  string $type           Type to apply (boost or bury).
+	 * @return array                  New formatted search args.
 	 */
 	protected function add_dynamic_boost_or_bury( $action, $formatted_args, $type = 'boost' ) {
 		// Get boost/bury value.
@@ -562,12 +561,13 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		 *
 		 * @since 0.1.0
 		 *
-		 * @param         object existing scripts
-		 * @param         string script type being filtered, object_scripts or string_scripts
-		 * @param 		  string type of action, boost or bury
-		 * @param  		  array action being applied
+		 * @param object Existing scripts
+		 * @param string Script type being filtered, object_scripts or string_scripts
+		 * @param string Type of action, boost or bury
+		 * @param array  Action being applied
 		 */
-		$this->{$script_type} = apply_filters( 'wds_ep_ui_boost_or_bury_scripts',
+		$this->{$script_type} = apply_filters(
+			'wds_ep_ui_boost_or_bury_scripts',
 			$this->{$script_type},
 			$script_type,
 			$type,
