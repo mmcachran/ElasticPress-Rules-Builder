@@ -30,6 +30,60 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	protected $function_scores = [];
 
 	/**
+	 * Operator scripts for string fields
+	 *
+	 * @since  0.1.0
+	 * @var array
+	 */
+	protected $string_scripts = [
+		'contains'         => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase().indexOf( '[TEXT]' ) != -1 ? [VALUE] : 0 )",
+		'is_in'            => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase().indexOf( '[TEXT]' ) != -1 ? [VALUE] : 0 )",
+
+		'does_not_contain' => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase().indexOf( '[TEXT]' ) == -1 ? [VALUE] : 0 )",
+		'is_not_in'        => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase().indexOf( '[TEXT]' ) == -1 ? [VALUE] : 0 )",
+
+		'is'               => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase() == '[TEXT]' ? [VALUE] : 0 )",
+
+		'is_not'           => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase() != '[TEXT]' ? [VALUE] : 0 )",
+	];
+
+	/**
+	 * Operator scripts for taxonomy object fields
+	 *
+	 * @since  0.1.0
+	 * @var array
+	 */
+	protected $taxonomy_object_scripts = [
+		'contains'         => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
+		'is_in'            => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
+
+		'does_not_contain' => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
+		'is_not_in'        => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
+
+		'is'               => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase() == '[TEXT]' } != null ? [VALUE] : 0 )",
+
+		'is_not'           => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name == '[TEXT]' } == null ? [VALUE] : 0 )",
+	];
+
+	/**
+	 * Operator scripts for meta object fields
+	 *
+	 * @since  0.1.0
+	 * @var array
+	 */
+	protected $meta_object_scripts = [
+		'contains'         => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
+		'is_in'            => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
+
+		'does_not_contain' => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
+		'is_not_in'        => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
+
+		'is'               => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase() == '[TEXT]' } != null ? [VALUE] : 0 )",
+
+		'is_not'           => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw == '[TEXT]' } == null ? [VALUE] : 0 )",
+	];
+
+	/**
 	 * Determines if the metabox should be registered.
 	 *
 	 * @since 0.1.0
@@ -83,6 +137,11 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 		// Fetch valid search rules for the query.
 		$rules = $this->get_search_rules();
+
+		// Bail early if no valid rules.
+		if ( empty( $rules ) ) {
+			return $formatted_args;
+		}
 
 		// Do things with the query...
 		return $formatted_args;
