@@ -115,9 +115,9 @@ class ActionsMetaBox extends AbstractMetaBox {
 						]
 					),
 
-					'action'   => new \Fieldmanager_Select(
+					'type'     => new \Fieldmanager_Select(
 						[
-							'label'   => esc_html__( 'Action', 'ep-rules-builder' ),
+							'label'   => esc_html__( 'Type', 'ep-rules-builder' ),
 							'options' => [
 								'boost' => esc_html__( 'Boost', 'ep-rules-builder' ),
 								'bury'  => esc_html__( 'Bury', 'ep-rules-builder' ),
@@ -139,7 +139,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 								'size'      => 60,
 							],
 							'display_if'       => [
-								'src'   => 'action',
+								'src'   => 'type',
 								'value' => 'boost',
 							],
 						]
@@ -158,7 +158,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 								'size'      => 60,
 							],
 							'display_if'       => [
-								'src'   => 'action',
+								'src'   => 'type',
 								'value' => 'bury',
 							],
 						]
@@ -176,7 +176,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 								'size'      => 60,
 							],
 							'display_if'       => [
-								'src'   => 'action',
+								'src'   => 'type',
 								'value' => 'hide',
 							],
 						]
@@ -187,8 +187,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 							'label'      => esc_html__( 'Field', 'ep-rules-builder' ),
 							'options'    => $this->get_action_field_options(),
 							'display_if' => [
-								'src'   => 'action',
-								'value' => 'boost, bury',
+								'src'   => 'type',
+								'value' => 'boost,bury',
 							],
 						]
 					),
@@ -198,8 +198,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 							'label'      => esc_html__( 'Operator', 'ep-rules-builder' ),
 							'options'    => $this->get_string_operator_options(),
 							'display_if' => [
-								'src'   => 'action',
-								'value' => 'boost, bury',
+								'src'   => 'type',
+								'value' => 'boost,bury',
 							],
 						]
 					),
@@ -216,8 +216,8 @@ class ActionsMetaBox extends AbstractMetaBox {
 								'size'      => 60,
 							],
 							'display_if'       => [
-								'src'   => 'action',
-								'value' => 'boost, bury',
+								'src'   => 'type',
+								'value' => 'boost,bury',
 							],
 						]
 					),

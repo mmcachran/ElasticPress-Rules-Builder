@@ -36,15 +36,12 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @var array
 	 */
 	protected $string_scripts = [
-		'contains'         => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase().indexOf( '[TEXT]' ) != -1 ? [VALUE] : 0 )",
-		'is_in'            => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase().indexOf( '[TEXT]' ) != -1 ? [VALUE] : 0 )",
-
-		'does_not_contain' => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase().indexOf( '[TEXT]' ) == -1 ? [VALUE] : 0 )",
-		'is_not_in'        => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase().indexOf( '[TEXT]' ) == -1 ? [VALUE] : 0 )",
-
-		'is'               => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase() == '[TEXT]' ? [VALUE] : 0 )",
-
-		'is_not'           => "return _score + ( _source.[FIELD] && _source.[FIELD].toLowerCase() != '[TEXT]' ? [VALUE] : 0 )",
+		'contains'         => "return _score + ( doc[[FIELD]].value.toLowerCase().indexOf( '[TEXT]' ) != -1 ? [VALUE] : 0 )",
+		'is_in'            => "return _score + ( doc[[FIELD]].value.toLowerCase().indexOf( '[TEXT]' ) != -1 ? [VALUE] : 0 )",
+		'does_not_contain' => "return _score + ( doc[[FIELD]].value.toLowerCase().indexOf( '[TEXT]' ) == -1 ? [VALUE] : 0 )",
+		'is_not_in'        => "return _score + ( doc[[FIELD]].value.toLowerCase().indexOf( '[TEXT]' ) == -1 ? [VALUE] : 0 )",
+		'is'               => "return _score + ( doc[[FIELD]].value.toLowerCase() == '[TEXT]' ? [VALUE] : 0 )",
+		'is_not'           => "return _score + ( doc[[FIELD]].value.toLowerCase() != '[TEXT]' ? [VALUE] : 0 )",
 	];
 
 	/**
@@ -54,15 +51,12 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @var array
 	 */
 	protected $taxonomy_object_scripts = [
-		'contains'         => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
-		'is_in'            => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
-
-		'does_not_contain' => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
-		'is_not_in'        => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
-
-		'is'               => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name.toLowerCase() == '[TEXT]' } != null ? [VALUE] : 0 )",
-
-		'is_not'           => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.name && it.name == '[TEXT]' } == null ? [VALUE] : 0 )",
+		'contains'         => "return _score + ( doc[[FIELD]].value.find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
+		'is_in'            => "return _score + ( doc[[FIELD]].value.find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
+		'does_not_contain' => "return _score + ( doc[[FIELD]].value.find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
+		'is_not_in'        => "return _score + ( doc[[FIELD]].value.find { it.name && it.name.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
+		'is'               => "return _score + ( doc[[FIELD]].value.find { it.name && it.name.toLowerCase() == '[TEXT]' } != null ? [VALUE] : 0 )",
+		'is_not'           => "return _score + ( doc[[FIELD]].value.find { it.name && it.name == '[TEXT]' } == null ? [VALUE] : 0 )",
 	];
 
 	/**
@@ -72,15 +66,12 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @var array
 	 */
 	protected $meta_object_scripts = [
-		'contains'         => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
-		'is_in'            => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
-
-		'does_not_contain' => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
-		'is_not_in'        => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
-
-		'is'               => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw.toLowerCase() == '[TEXT]' } != null ? [VALUE] : 0 )",
-
-		'is_not'           => "return _score + ( _source.[FIELD] && _source.[FIELD].find { it.raw && it.raw == '[TEXT]' } == null ? [VALUE] : 0 )",
+		'contains'         => "return _score + ( doc[[FIELD]].value.find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
+		'is_in'            => "return _score + ( doc[[FIELD]].value.find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) != -1 } != null ? [VALUE] : 0 )",
+		'does_not_contain' => "return _score + ( doc[[FIELD]].value.find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
+		'is_not_in'        => "return _score + ( doc[[FIELD]].value.find { it.raw && it.raw.toLowerCase().indexOf( '[TEXT]' ) == -1  } != null ? [VALUE] : 0 )",
+		'is'               => "return _score + ( doc[[FIELD]].value.find { it.raw && it.raw.toLowerCase() == '[TEXT]' } != null ? [VALUE] : 0 )",
+		'is_not'           => "return _score + ( doc[[FIELD]].value.find { it.raw && it.raw == '[TEXT]' } == null ? [VALUE] : 0 )",
 	];
 
 	/**
@@ -143,7 +134,44 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			return $formatted_args;
 		}
 
-		// Do things with the query...
+		// Loop through valid rules to add actions.
+		foreach ( $rules as $rule_id ) {
+			$formatted_args = $this->apply_actions( $rule_id, $formatted_args );
+		}
+
+		// Add function scores if necessary.
+		if ( ! empty( $this->function_scores ) ) {
+			// Move the existing query if necessary.
+			if ( isset( $formatted_args['query'] ) ) {
+				$existing_query  = $formatted_args['query'];
+				unset( $formatted_args['query'] );
+				$formatted_args['query']['function_score']['query'] = $existing_query;
+			}
+
+			// Move existing filter if necessary.
+			if ( isset( $formatted_args['filter'] ) ) {
+				$formatted_args['query']['function_score']['filter'] = $formatted_args['filter'];
+				unset( $formatted_args['filter'] );
+			}
+
+			// Add functions.
+			$formatted_args['query']['function_score']['functions'] = $this->function_scores;
+
+			// Specify how the computed scores are combined.
+			$formatted_args['query']['function_score']['score_mode'] = 'sum';
+			$formatted_args['query']['function_score']['boost_mode'] = 'multiply';
+
+			// Remove empty match_all query if it exists.
+			if ( empty( $formatted_args['query']['function_score']['query']['match_all'] ) ) {
+				unset( $formatted_args['query']['function_score']['query']['match_all'] );
+			}
+
+			// Remove empty query if it exists.
+			if ( empty( $formatted_args['query']['function_score']['query'] ) ) {
+				unset( $formatted_args['query']['function_score']['query'] );
+			}
+		}
+
 		return $formatted_args;
 	}
 
@@ -367,5 +395,274 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 		// The trigger is not valid.
 		return false;
+	}
+
+	/**
+	 * Apply rules to formatted search args
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  int   $rule_id		 ID of the rule.
+	 * @param  array $formatted_args Formatted search args.
+	 * @return array                 New formatted search args.
+	 */
+	protected function apply_actions( int $rule_id, array $formatted_args ) {
+		// Get actions for the rule.
+		$rule_actions = get_post_meta( $rule_id, EP_RULES_BUILDER_METABOX_PREFIX . 'actions', true );
+
+		// Bail early if no actions to apply.
+		if ( empty( $rule_actions['actions'] ) ) {
+			return $formatted_args;
+		}
+
+		// Loop through and apply each action.
+		foreach ( (array) $rule_actions['actions'] as $action ) {
+			$formatted_args = $this->apply_action( $action, $formatted_args );
+		}
+
+		return $formatted_args;
+	}
+
+	/**
+	 * Apply action to formatted args
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  array $action         Action configuration.
+	 * @param  array $formatted_args Formatted search args.
+	 * @return array                 Modified formatted search args.
+	 */
+	protected function apply_action( array $action, array $formatted_args ) {
+		// Bail early if no action.
+		if ( empty( $action['type'] ) ) {
+			return $formatted_args;
+		}
+
+		// Format args based on the action type.
+		switch ( $action['type'] ) {
+			case 'boost':
+				$formatted_args = $this->add_boost_or_bury( $action, $formatted_args, 'boost' );
+				break;
+
+			case 'bury':
+				$formatted_args = $this->add_boost_or_bury( $action, $formatted_args, 'bury' );
+				break;
+
+			case 'hide':
+				$formatted_args = $this->add_hide( $action, $formatted_args );
+				break;
+
+			default:
+				break;
+		}
+
+		return $formatted_args;
+	}
+
+	/**
+	 * Add hide post IDs to the query.
+	 *
+	 * @param array $action         The action array.
+	 * @param array $formatted_args The current formatted arguments.
+	 * @return array                The updated formatted arguments.
+	 */
+	protected function add_hide( array $action, array $formatted_args ) {
+		// Get hide IDs from the action.
+		$hide_ids = ! empty( $action['hide'] ) ? explode( ',', $action['hide'] ) : [];
+
+		// Bail early if no hide ids.
+		if ( empty( $hide_ids ) ) {
+			return $formatted_args;
+		}
+
+		// Add to the list of formatted args.
+		foreach ( $hide_ids as $hide_id ) {
+			$formatted_args['post_filter']['bool']['must_not'][]['terms'] = array(
+				'post_id' => [ $hide_id ],
+			);
+		}
+
+		return $formatted_args;
+	}
+
+	/**
+	 * Apply dynamic and non-dynamic boost/bury
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  array  $action         Action configuration.
+	 * @param  array  $formatted_args Formatted search args.
+	 * @param  string $type 		 Type to apply (boost or bury).
+	 * @return array                 New formatted search args.
+	 */
+	protected function add_boost_or_bury( $action, $formatted_args, $type = 'boost' ) {
+		// Check for dynamics scripting.
+		//if ( $this->plugin->dynamic_scripting ) {
+			$formatted_args = $this->add_dynamic_boost_or_bury( $action, $formatted_args, $type );
+		//} else {
+			// Add non-dynamic to make sure results exist.
+			//$formatted_args = $this->add_non_dynamic_boost_or_bury( $action, $formatted_args, $type );
+		//}
+
+		return $formatted_args;
+	}
+
+	/**
+	 * Apply boost/bury to formatted args
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  array  $action         Action configuration.
+	 * @param  array  $formatted_args Formatted search args.
+	 * @param  string $type 		 Type to apply (boost or bury).
+	 * @return array                 New formatted search args.
+	 */
+	protected function add_dynamic_boost_or_bury( $action, $formatted_args, $type = 'boost' ) {
+		// Get boost/bury value.
+		$value = isset( $action[ $type ] ) ? $action[ $type ] : false;
+
+		// Bail early if no value.
+		if ( false === $value ) {
+			return $formatted_args;
+		}
+
+		// Bail early if no text.
+		if ( ! isset( $action['text'] ) ) {
+			return $formatted_args;
+		}
+
+		// Bail early if no field.
+		if ( empty( $action['field'] ) ) {
+			return $formatted_args;
+		}
+
+		// Lowercase text.
+		$text = strtolower( $action['text'] );
+
+		// Get operator.
+		$operator = isset( $action['operator'] ) ? $action['operator'] : false;
+
+		/**
+		 * Figure out what script type we need to use.
+		 *
+		 * @var string
+		 * @todo  update rules builder to include types
+		 */
+		$script_type = 'string_scripts';
+
+		// Use meta object type if needed.
+		if ( stristr( $action['field'], 'meta' ) ) {
+			$script_type = 'meta_object_scripts';
+		}
+
+		/**
+		 * Filter dynamic scripts
+		 *
+		 * Add/edit dynamic scripts
+		 *
+		 * @since 0.1.0
+		 *
+		 * @param         object existing scripts
+		 * @param         string script type being filtered, object_scripts or string_scripts
+		 * @param 		  string type of action, boost or bury
+		 * @param  		  array action being applied
+		 */
+		$this->{$script_type} = apply_filters( 'wds_ep_ui_boost_or_bury_scripts',
+			$this->{$script_type},
+			$script_type,
+			$type,
+			$action
+		);
+
+		// Get the correct script to use.
+		$script = isset( $this->{$script_type}[ $operator ] ) ? $this->{$script_type}[ $operator ] : false;
+
+		// Bail early if no script.
+		if ( empty( $script ) ) {
+			return $formatted_args;
+		}
+
+		// If menu order only use menu order and not meta.
+		if ( stristr( $action['field'], 'menu_order' ) ) {
+			$action['field'] = 'menu_order';
+		}
+
+		// Replace query vars.
+		$script = str_replace( '[FIELD]', "'" . $action['field'] . "'", $script );
+		$script = str_replace( '[TEXT]', $text, $script );
+		$script = str_replace( '[VALUE]', $value, $script );
+
+		// Build script score.
+		$score_script = new \stdclass;
+
+		$score_script->script_score = [
+			'script' => [
+				'lang'   => 'painless',
+				'inline' => $script,
+			],
+		];
+
+		// Add script_score.
+		$this->function_scores[] = $score_script;
+
+		// Return original formatted args.
+		return $formatted_args;
+	}
+
+	/**
+	 * Apply non-dynamic boost/bury to formatted args
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  array  $action         Action configuration.
+	 * @param  array  $formatted_args Formatted search args.
+	 * @param  string $type           Type to apply (boost or bury).
+	 * @return array                  New formatted search args.
+	 */
+	protected function add_non_dynamic_boost_or_bury( array $action, array $formatted_args, $type = 'boost' ) {
+		// Get boost/bury value.
+		$value = isset( $action[ $type ] ) ? $action[ $type ] : false;
+
+		// Bail early if no value.
+		if ( false === $value ) {
+			return $formatted_args;
+		}
+
+		// Bail early if no text.
+		if ( ! isset( $action['text'] ) ) {
+			return $formatted_args;
+		}
+
+		// Use name if searching terms.
+		if ( stristr( $action['field'], 'terms.' ) ) {
+			$action['field'] .= '.name';
+		}
+
+		// If menu order only use menu order and not meta.
+		if ( stristr( $action['field'], 'menu_order' ) ) {
+			$action['field'] = 'menu_order';
+		}
+
+		// Lowercase text.
+		$text = strtolower( $action['text'] );
+
+		// Start query array for should match.
+		$query = array(
+			'query' => $text,
+		);
+
+		// Only add boost if dynamic function_score isn't added.
+		if ( ! $this->plugin->dynamic_scripting ) {
+			$query['boost'] = $value;
+		}
+
+		// Update formatted args.
+		$formatted_args['query']['bool']['should'][] = array(
+			'match' => array(
+				$action['field'] => $query,
+			),
+		);
+
+		return $formatted_args;
 	}
 }
