@@ -503,9 +503,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			$this->add_dynamic_boost_or_bury( $action, $type );
 		// } else {
 			// Add non-dynamic to make sure results exist.
-			// $formatted_args = $this->add_non_dynamic_boost_or_bury( $action, $formatted_args, $type );
+			// $this->add_non_dynamic_boost_or_bury( $action, $type );
 		// }
-		return $formatted_args;
 	}
 
 	/**
@@ -580,7 +579,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 		// Bail early if no script.
 		if ( empty( $script ) ) {
-			return $formatted_args;
+			return;
 		}
 
 		// If menu order only use menu order and not meta.
