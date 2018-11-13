@@ -72,7 +72,6 @@ class AbstractPostTypeTest extends \WP_UnitTestCase {
 		$taxonomies = get_object_taxonomies( 'thing' );
 		$this->assertEquals( [ EP_RULE_TYPE_TAXONOMY ], $taxonomies );
 	}
-
 }
 
 /**
@@ -116,5 +115,4 @@ class ThingPostType extends AbstractPostType {
 			EP_RULE_TYPE_TAXONOMY,
 		];
 	}
-
 }

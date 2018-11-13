@@ -67,6 +67,5 @@ class RuleTypeTaxonomyTest extends \WP_UnitTestCase {
 		$actual = $this->taxonomy->get_options();
 		$this->assertFalse( $actual['public'] );
 	}
-
 }
 

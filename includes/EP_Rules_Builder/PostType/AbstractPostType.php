@@ -196,5 +196,4 @@ abstract class AbstractPostType implements \EP_Rules_Builder\RegistrationInterfa
 
 		return $this_post_type === $post_type;
 	}
-
 }

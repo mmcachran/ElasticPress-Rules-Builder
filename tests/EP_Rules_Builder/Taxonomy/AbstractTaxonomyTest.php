@@ -99,7 +99,6 @@ class AbstractTaxonomyTest extends \WP_UnitTestCase {
 		$this->taxonomy->register();
 		$this->assertTrue( taxonomy_exists( 'thing' ) );
 	}
-
 }
 
 /**
@@ -140,5 +139,4 @@ class ThingTaxonomy extends AbstractTaxonomy {
 	public function get_plural_label() {
 		return $this->name . 's';
 	}
-
 }

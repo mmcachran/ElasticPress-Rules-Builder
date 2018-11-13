@@ -41,5 +41,4 @@ class PluginTest extends \WP_UnitTestCase {
 		$this->assertInstanceOf( 'EP_Rules_Builder\Plugin', $a );
 		$this->assertSame( $a, $b );
 	}
-
 }

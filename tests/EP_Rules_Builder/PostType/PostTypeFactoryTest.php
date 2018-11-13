@@ -88,5 +88,4 @@ class PostTypeFactoryTest extends \WP_UnitTestCase {
 
 		$this->assertTrue( post_type_exists( EP_RULE_POST_TYPE ) );
 	}
-
 }

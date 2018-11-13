@@ -212,5 +212,4 @@ class Plugin {
 		// Register the object.
 		$object->register();
 	}
-
 }
