@@ -478,7 +478,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		// Add to the list of formatted args.
 		foreach ( $hide_ids as $hide_id ) {
 			$formatted_args['post_filter']['bool']['must_not'][]['terms'] = array(
-				'post_id' => [ $hide_id ],
+				'post_id' => [ trim( $hide_id ) ],
 			);
 		}
 
