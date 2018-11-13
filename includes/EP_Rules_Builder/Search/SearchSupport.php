@@ -463,8 +463,6 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			default:
 				break;
 		}
-
-		return $formatted_args;
 	}
 
 	/**
