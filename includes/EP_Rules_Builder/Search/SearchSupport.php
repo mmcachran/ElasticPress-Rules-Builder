@@ -143,7 +143,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		if ( ! empty( $this->function_scores ) ) {
 			// Move the existing query if necessary.
 			if ( isset( $formatted_args['query'] ) ) {
-				$existing_query  = $formatted_args['query'];
+				$existing_query = $formatted_args['query'];
 				unset( $formatted_args['query'] );
 				$formatted_args['query']['function_score']['query'] = $existing_query;
 			}
@@ -402,9 +402,9 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param  int   $rule_id		 ID of the rule.
-	 * @param  array $formatted_args Formatted search args.
-	 * @return array                 New formatted search args.
+	 * @param int   $rule_id        ID of the rule.
+	 * @param array $formatted_args Formatted search args.
+	 * @return array                New formatted search args.
 	 */
 	protected function apply_actions( int $rule_id, array $formatted_args ) {
 		// Get actions for the rule.
@@ -492,8 +492,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 *
 	 * @param  array  $action         Action configuration.
 	 * @param  array  $formatted_args Formatted search args.
-	 * @param  string $type 		 Type to apply (boost or bury).
-	 * @return array                 New formatted search args.
+	 * @param  string $type           Type to apply (boost or bury).
+	 * @return array                  New formatted search args.
 	 */
 	protected function add_boost_or_bury( $action, $formatted_args, $type = 'boost' ) {
 		// Check for dynamics scripting.
