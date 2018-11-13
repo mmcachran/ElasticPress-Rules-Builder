@@ -30,6 +30,15 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	protected $function_scores = [];
 
 	/**
+	 * Holds the formatted arguments for Elasticsearch.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @var array
+	 */
+	protected $formatted_args = [];
+
+	/**
 	 * Operator scripts for string fields
 	 *
 	 * @since  0.1.0
@@ -134,45 +143,48 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			return $formatted_args;
 		}
 
+		// Save formatted args in a class property.
+		$this->formatted_args = $formatted_args;
+
 		// Loop through valid rules to add actions.
 		foreach ( $rules as $rule_id ) {
-			$formatted_args = $this->apply_actions( $rule_id, $formatted_args );
+			$this->apply_actions( $rule_id );
 		}
 
 		// Add function scores if necessary.
 		if ( ! empty( $this->function_scores ) ) {
 			// Move the existing query if necessary.
-			if ( isset( $formatted_args['query'] ) ) {
-				$existing_query = $formatted_args['query'];
-				unset( $formatted_args['query'] );
-				$formatted_args['query']['function_score']['query'] = $existing_query;
+			if ( isset( $this->formatted_args['query'] ) ) {
+				$existing_query = $this->formatted_args['query'];
+				unset( $this->formatted_args['query'] );
+				$this->formatted_args['query']['function_score']['query'] = $existing_query;
 			}
 
 			// Move existing filter if necessary.
-			if ( isset( $formatted_args['filter'] ) ) {
-				$formatted_args['query']['function_score']['filter'] = $formatted_args['filter'];
-				unset( $formatted_args['filter'] );
+			if ( isset( $this->formatted_args['filter'] ) ) {
+				$this->formatted_args['query']['function_score']['filter'] = $this->formatted_args['filter'];
+				unset( $this->formatted_args['filter'] );
 			}
 
 			// Add functions.
-			$formatted_args['query']['function_score']['functions'] = $this->function_scores;
+			$this->formatted_args['query']['function_score']['functions'] = $this->function_scores;
 
 			// Specify how the computed scores are combined.
-			$formatted_args['query']['function_score']['score_mode'] = 'sum';
-			$formatted_args['query']['function_score']['boost_mode'] = 'multiply';
+			$this->formatted_args['query']['function_score']['score_mode'] = 'sum';
+			$this->formatted_args['query']['function_score']['boost_mode'] = 'multiply';
 
 			// Remove empty match_all query if it exists.
-			if ( empty( $formatted_args['query']['function_score']['query']['match_all'] ) ) {
-				unset( $formatted_args['query']['function_score']['query']['match_all'] );
+			if ( empty( $this->formatted_args['query']['function_score']['query']['match_all'] ) ) {
+				unset( $this->formatted_args['query']['function_score']['query']['match_all'] );
 			}
 
 			// Remove empty query if it exists.
-			if ( empty( $formatted_args['query']['function_score']['query'] ) ) {
-				unset( $formatted_args['query']['function_score']['query'] );
+			if ( empty( $this->formatted_args['query']['function_score']['query'] ) ) {
+				unset( $this->formatted_args['query']['function_score']['query'] );
 			}
 		}
 
-		return $formatted_args;
+		return $this->formatted_args;
 	}
 
 	/**
@@ -402,25 +414,22 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param int   $rule_id        ID of the rule.
-	 * @param array $formatted_args Formatted search args.
-	 * @return array                New formatted search args.
+	 * @param int $rule_id        ID of the rule.
+	 * @return void
 	 */
-	protected function apply_actions( int $rule_id, array $formatted_args ) {
+	protected function apply_actions( int $rule_id ) {
 		// Get actions for the rule.
 		$rule_actions = get_post_meta( $rule_id, EP_RULES_BUILDER_METABOX_PREFIX . 'actions', true );
 
 		// Bail early if no actions to apply.
 		if ( empty( $rule_actions['actions'] ) ) {
-			return $formatted_args;
+			return;
 		}
 
 		// Loop through and apply each action.
 		foreach ( (array) $rule_actions['actions'] as $action ) {
-			$formatted_args = $this->apply_action( $action, $formatted_args );
+			$this->apply_action( $action );
 		}
-
-		return $formatted_args;
 	}
 
 	/**
@@ -429,27 +438,26 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @since 0.1.0
 	 *
 	 * @param  array $action         Action configuration.
-	 * @param  array $formatted_args Formatted search args.
-	 * @return array                 Modified formatted search args.
+	 * @return void
 	 */
-	protected function apply_action( array $action, array $formatted_args ) {
+	protected function apply_action( array $action ) {
 		// Bail early if no action.
 		if ( empty( $action['type'] ) ) {
-			return $formatted_args;
+			return;
 		}
 
 		// Format args based on the action type.
 		switch ( $action['type'] ) {
 			case 'boost':
-				$formatted_args = $this->add_boost_or_bury( $action, $formatted_args, 'boost' );
+				$this->add_boost_or_bury( $action, 'boost' );
 				break;
 
 			case 'bury':
-				$formatted_args = $this->add_boost_or_bury( $action, $formatted_args, 'bury' );
+				$this->add_boost_or_bury( $action, 'bury' );
 				break;
 
 			case 'hide':
-				$formatted_args = $this->add_hide( $action, $formatted_args );
+				$this->add_hide( $action );
 				break;
 
 			default:
@@ -463,26 +471,23 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * Add hide post IDs to the query.
 	 *
 	 * @param array $action         The action array.
-	 * @param array $formatted_args The current formatted arguments.
-	 * @return array                The updated formatted arguments.
+	 * @return void
 	 */
-	protected function add_hide( array $action, array $formatted_args ) {
+	protected function add_hide( array $action ) {
 		// Get hide IDs from the action.
 		$hide_ids = ! empty( $action['hide'] ) ? explode( ',', $action['hide'] ) : [];
 
 		// Bail early if no hide ids.
 		if ( empty( $hide_ids ) ) {
-			return $formatted_args;
+			return;
 		}
 
 		// Add to the list of formatted args.
 		foreach ( $hide_ids as $hide_id ) {
-			$formatted_args['post_filter']['bool']['must_not'][]['terms'] = array(
+			$this->formatted_args['post_filter']['bool']['must_not'][]['terms'] = array(
 				'post_id' => [ trim( $hide_id ) ],
 			);
 		}
-
-		return $formatted_args;
 	}
 
 	/**
@@ -491,14 +496,13 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @since 0.1.0
 	 *
 	 * @param  array  $action         Action configuration.
-	 * @param  array  $formatted_args Formatted search args.
 	 * @param  string $type           Type to apply (boost or bury).
 	 * @return array                  New formatted search args.
 	 */
-	protected function add_boost_or_bury( $action, $formatted_args, $type = 'boost' ) {
+	protected function add_boost_or_bury( $action, $type = 'boost' ) {
 		// Check for dynamics scripting.
 		// if ( $this->plugin->dynamic_scripting ) {
-			$formatted_args = $this->add_dynamic_boost_or_bury( $action, $formatted_args, $type );
+			$this->add_dynamic_boost_or_bury( $action, $type );
 		// } else {
 			// Add non-dynamic to make sure results exist.
 			// $formatted_args = $this->add_non_dynamic_boost_or_bury( $action, $formatted_args, $type );
@@ -512,27 +516,26 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @since 0.1.0
 	 *
 	 * @param  array  $action         Action configuration.
-	 * @param  array  $formatted_args Formatted search args.
 	 * @param  string $type           Type to apply (boost or bury).
-	 * @return array                  New formatted search args.
+	 * @return void
 	 */
-	protected function add_dynamic_boost_or_bury( $action, $formatted_args, $type = 'boost' ) {
+	protected function add_dynamic_boost_or_bury( $action, $type = 'boost' ) {
 		// Get boost/bury value.
 		$value = isset( $action[ $type ] ) ? $action[ $type ] : false;
 
 		// Bail early if no value.
 		if ( false === $value ) {
-			return $formatted_args;
+			return;
 		}
 
 		// Bail early if no text.
 		if ( ! isset( $action['text'] ) ) {
-			return $formatted_args;
+			return;
 		}
 
 		// Bail early if no field.
 		if ( empty( $action['field'] ) ) {
-			return $formatted_args;
+			return;
 		}
 
 		// Lowercase text.
@@ -604,9 +607,6 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 		// Add script_score.
 		$this->function_scores[] = $score_script;
-
-		// Return original formatted args.
-		return $formatted_args;
 	}
 
 	/**
@@ -615,22 +615,21 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @since 0.1.0
 	 *
 	 * @param  array  $action         Action configuration.
-	 * @param  array  $formatted_args Formatted search args.
 	 * @param  string $type           Type to apply (boost or bury).
-	 * @return array                  New formatted search args.
+	 * @return void
 	 */
-	protected function add_non_dynamic_boost_or_bury( array $action, array $formatted_args, $type = 'boost' ) {
+	protected function add_non_dynamic_boost_or_bury( array $action, $type = 'boost' ) {
 		// Get boost/bury value.
 		$value = isset( $action[ $type ] ) ? $action[ $type ] : false;
 
 		// Bail early if no value.
 		if ( false === $value ) {
-			return $formatted_args;
+			return;
 		}
 
 		// Bail early if no text.
 		if ( ! isset( $action['text'] ) ) {
-			return $formatted_args;
+			return;
 		}
 
 		// Use name if searching terms.
@@ -657,12 +656,10 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		}
 
 		// Update formatted args.
-		$formatted_args['query']['bool']['should'][] = array(
+		$this->formatted_args['query']['bool']['should'][] = array(
 			'match' => array(
 				$action['field'] => $query,
 			),
 		);
-
-		return $formatted_args;
 	}
 }
