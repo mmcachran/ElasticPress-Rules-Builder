@@ -57,7 +57,7 @@ class GeneralMetaBox extends AbstractMetaBox {
 	 * @return string The name for the base metabox.
 	 */
 	protected function get_metabox_name() {
-		return METABOX_PREFIX . 'general';
+		return EP_RULES_BUILDER_METABOX_PREFIX . 'general';
 	}
 
 	/**

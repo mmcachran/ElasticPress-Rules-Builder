@@ -45,6 +45,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		 *
 		 * Hook for allowing the Rules Builder to integrate with EP queries.
 		 *
+		 * @since 0.1.0
+		 *
 		 * @param bool $integrate True if allowed to integrate, false otherwise.
 		 */
 		return apply_filters( 'ep_rules_builder_integrate_search', $can_integrate );
@@ -102,6 +104,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		 *
 		 * Modify the number of posts per page.
 		 *
+		 * @since 0.1.0
+		 *
 		 * @param int $posts_per_page The default posts per page.
 		 */
 		$posts_per_page = apply_filters( 'ep_rules_builder_rules_limit', 500 );
@@ -136,8 +140,6 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			$results[] = $rule_id;
 		}
 
-		var_dump( $results ); die;
-
 		return $results;
 	}
 
@@ -154,6 +156,13 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		if ( ! $this->is_rule_dates_valid( $rule_id ) ) {
 			return false;
 		}
+
+		// Bail early if the rule's triggers do not apply to this search.
+		if ( ! $this->rule_triggers_are_valid( $rule_id ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -166,7 +175,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 */
 	protected function is_rule_dates_valid( int $rule_id ) {
 		// Get rule general data from meta.
-		$rule_data = get_post_meta( $rule_id, METABOX_PREFIX . 'general', true );
+		$rule_data = get_post_meta( $rule_id, EP_RULES_BUILDER_METABOX_PREFIX . 'general', true );
 
 		// Bail early if no meta.
 		if ( empty( $rule_data ) ) {
@@ -196,5 +205,108 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 		// This is a valid rule.
 		return true;
+	}
+
+	/**
+	 * Parses a rule's triggers.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param int $rule_id The rule to test triggers.
+	 * @return bool True if the rule's triggers are valid, false otherwise.
+	 */
+	protected function rule_triggers_are_valid( int $rule_id ) {
+		$rule_triggers = get_post_meta( $rule_id, EP_RULES_BUILDER_METABOX_PREFIX . 'triggers', true );
+
+		// Bail early if no rule triggers.
+		if ( empty( $rule_triggers['triggers'] ) ) {
+			return false;
+		}
+
+		$condition = isset( $rule_triggers['condition'] ) ? $rule_triggers['condition'] : 'all';
+
+		// Loop through rule triggers and test each.
+		foreach ( (array) $rule_triggers['triggers'] as $trigger ) {
+			// Test if the trigger applies.
+			$trigger_applies = $this->test_trigger( $trigger );
+
+			// Bail early if the condition is "any" and a condition has been met.
+			if ( $applies && ( 'any' === $condition ) ) {
+				return true;
+			} elseif ( ! $applies && ( 'all' === $condition ) ) {
+				// Bail early if the condition is 'all' and a condition is not met.
+				return false;
+			}
+		}
+
+		// If we made it here the trigger is valid.
+		return true;
+	}
+
+	/**
+	 * Tests a single rule trigger.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param array $trigger The trigger to test against.
+	 * @return bool True if the trigger is valid, false otherwise.
+	 */
+	protected function test_trigger( array $trigger ) {
+		/**
+		 * Override for the trigger.
+		 *
+		 * Modify the results of testing a rule's trigger.
+		 *
+		 * @since 0.1.0
+		 *
+		 * @param null  $null          If a result other than null is returned, the trigger test will be returned early
+		 * @param array $trigger       The trigger being tested.
+		 * @param string $search_term  The term being searched for.
+		 */
+		$override = apply_filters( 'ep_rules_builder_test_trigger_override', null, $trigger, $this->search_term );
+
+		// Bail early if the override was used.
+		if ( null !== $override ) {
+			return $override;
+		}
+
+		// Bail early if no operator.
+		if ( empty( $trigger['operator'] ) || empty( $trigger['keyword'] ) ) {
+			return false;
+		}
+
+		// Test criteria against keyword.
+		switch ( $trigger['operator'] ) {
+			case 'equals':
+			case 'is':
+				return (string) $trigger['keyword'] === (string) $this->search_term;
+
+			case 'does_not_equal':
+			case 'is_not':
+				return ! ( (string) $trigger['keyword'] === (string) $this->search_term );
+
+			case 'equals_or_greater_than':
+				return (int) $trigger['keyword'] >= (int) $this->search_term;
+
+			case 'equals_or_less_than':
+				return (int) $trigger['keyword'] <= (int) $this->search_term;
+
+			case 'greater_than':
+				return (int) $trigger['keyword'] > (int) $this->search_term;
+
+			case 'less_than':
+				return (int) $trigger['keyword'] < (int) $this->search_term;
+
+			case 'contains':
+			case 'is_in':
+				return stristr( $this->search_term, $trigger['keyword'] );
+
+			case 'is_not_in':
+			case 'does_not_contain':
+				return ! stristr( $this->search_term, $trigger['keyword'] );
+		}
+
+		// The trigger is not valid.
+		return false;
 	}
 }

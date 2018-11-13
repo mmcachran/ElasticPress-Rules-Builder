@@ -57,7 +57,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 	 * @return string The name for the base metabox.
 	 */
 	protected function get_metabox_name() {
-		return METABOX_PREFIX . 'actions';
+		return EP_RULES_BUILDER_METABOX_PREFIX . 'actions';
 	}
 
 	/**
@@ -100,7 +100,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 				'extra_elements' => 0,
 				'children'       => [
 
-					'title'  => new \Fieldmanager_Textfield(
+					'title'    => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Title', 'ep-rules-builder' ),
 							'description'      => esc_html__( 'Title for the action.', 'ep-rules-builder' ),
@@ -115,7 +115,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 						]
 					),
 
-					'action' => new \Fieldmanager_Select(
+					'action'   => new \Fieldmanager_Select(
 						[
 							'label'   => esc_html__( 'Action', 'ep-rules-builder' ),
 							'options' => [
@@ -126,7 +126,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 						]
 					),
 
-					'boost'  => new \Fieldmanager_Textfield(
+					'boost'    => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Boost', 'ep-rules-builder' ),
 							'field_class'      => 'text',
@@ -145,7 +145,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 						]
 					),
 
-					'bury'   => new \Fieldmanager_Textfield(
+					'bury'     => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Bury', 'ep-rules-builder' ),
 							'field_class'      => 'text',
@@ -164,7 +164,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 						]
 					),
 
-					'hide'   => new \Fieldmanager_Textfield(
+					'hide'     => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Hide', 'ep-rules-builder' ),
 							'field_class'      => 'text',
@@ -181,8 +181,63 @@ class ActionsMetaBox extends AbstractMetaBox {
 							],
 						]
 					),
+
+					'field'    => new \Fieldmanager_Select(
+						[
+							'label'      => esc_html__( 'Field', 'ep-rules-builder' ),
+							'options'    => $this->get_action_field_options(),
+							'display_if' => [
+								'src'   => 'action',
+								'value' => 'boost, bury',
+							],
+						]
+					),
+
+					'operator' => new \Fieldmanager_Select(
+						[
+							'label'      => esc_html__( 'Operator', 'ep-rules-builder' ),
+							'options'    => $this->get_string_operator_options(),
+							'display_if' => [
+								'src'   => 'action',
+								'value' => 'boost, bury',
+							],
+						]
+					),
+
+					'text'     => new \Fieldmanager_Textfield(
+						[
+							'label'            => esc_html__( 'Text', 'ep-rules-builder' ),
+							'field_class'      => 'text',
+							'validation_rules' => [
+								'required' => false,
+							],
+							'attributes'       => [
+								'maxlength' => 80,
+								'size'      => 60,
+							],
+							'display_if'       => [
+								'src'   => 'action',
+								'value' => 'boost, bury',
+							],
+						]
+					),
+
 				],
 			]
 		);
+	}
+
+	/**
+	 * Gets a list of action field options.
+	 *
+	 * @return array Action field options.
+	 */
+	protected function get_action_field_options() {
+		return [
+			'post_title'   => esc_html__( 'Title', 'wds-ep-ui' ),
+			'post_content' => esc_html__( 'Content', 'wds-ep-ui' ),
+			'post_excerpt' => esc_html__( 'Excerpt', 'wds-ep-ui' ),
+			'post_name'    => esc_html__( 'Slug', 'wds-ep-ui' ),
+		];
 	}
 }
