@@ -422,14 +422,12 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		$rule_actions = get_post_meta( $rule_id, EP_RULES_BUILDER_METABOX_PREFIX . 'actions', true );
 
 		// Bail early if no actions to apply.
-		if ( empty( $rule_actions['actions'] ) ) {
+		if ( empty( $rule_actions['actions'] ) || ! is_array( $rule_actions['actions'] ) ) {
 			return;
 		}
 
 		// Loop through and apply each action.
-		foreach ( (array) $rule_actions['actions'] as $action ) {
-			$this->apply_action( $action );
-		}
+		array_map( [ $this, 'apply_action' ], $rule_actions['actions'] );
 	}
 
 	/**
