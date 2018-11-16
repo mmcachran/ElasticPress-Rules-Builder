@@ -439,11 +439,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		// Format args based on the action type.
 		switch ( $action['type'] ) {
 			case 'boost':
-				$this->add_boost_or_bury( $action, 'boost' );
-				break;
-
 			case 'bury':
-				$this->add_boost_or_bury( $action, 'bury' );
+				$this->add_boost_or_bury( $action, $action['type'] );
 				break;
 
 			case 'hide':
@@ -489,12 +486,12 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 */
 	protected function add_boost_or_bury( $action, $type = 'boost' ) {
 		// Check for dynamics scripting.
-		// if ( $this->plugin->dynamic_scripting ) {
+		if ( \EP_Rules_Builder\dynamic_scripting_enabled() ) {
 			$this->add_dynamic_boost_or_bury( $action, $type );
-		// } else {
+		} else {
 			// Add non-dynamic to make sure results exist.
-			// $this->add_non_dynamic_boost_or_bury( $action, $type );
-		// }
+			$this->add_non_dynamic_boost_or_bury( $action, $type );
+		}
 	}
 
 	/**
@@ -643,10 +640,10 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		}
 
 		// Update formatted args.
-		$this->formatted_args['query']['bool']['should'][] = array(
-			'match' => array(
+		$this->formatted_args['query']['function_score']['query']['bool']['should'][] = [
+			'match' => [
 				$action['field'] => $query,
-			),
-		);
+			],
+		];
 	}
 }
