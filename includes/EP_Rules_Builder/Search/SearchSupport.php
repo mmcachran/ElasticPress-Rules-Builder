@@ -30,6 +30,13 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	protected $function_scores = [];
 
 	/**
+	 * Holds search rules for the query.
+	 *
+	 * @var array
+	 */
+	protected $search_rules = [];
+
+	/**
 	 * Holds the formatted arguments for Elasticsearch.
 	 *
 	 * @since 0.1.0
@@ -136,10 +143,10 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		$this->search_term = $args['s'];
 
 		// Fetch valid search rules for the query.
-		$rules = $this->get_search_rules();
+		$this->fetch_search_rules();
 
 		// Bail early if no valid rules.
-		if ( empty( $rules ) ) {
+		if ( empty( $this->search_rules ) ) {
 			return $formatted_args;
 		}
 
@@ -147,9 +154,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		$this->formatted_args = $formatted_args;
 
 		// Loop through valid rules to add actions.
-		foreach ( $rules as $rule_id ) {
-			$this->apply_actions( $rule_id );
-		}
+		array_map( [ $this, 'apply_actions' ], $this->search_rules );
 
 		// Add function scores if necessary.
 		if ( ! empty( $this->function_scores ) ) {
@@ -188,16 +193,13 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	}
 
 	/**
-	 * Returns a list of valid search rules.
+	 * Fetches for valid search rules.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @return array A list of valid search rules.
+	 * @return void
 	 */
-	protected function get_search_rules() {
-		// Holds the response for this method.
-		$response = [];
-
+	protected function fetch_search_rules() {
 		/**
 		 * Get the number of posts per page.
 		 *
@@ -223,23 +225,12 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 		$rules = new \WP_Query( $args );
 
-		// Bail early if no posts.
+		// Bail early if no rules.
 		if ( ! $rules->have_posts() ) {
-			return $response;
+			return;
 		}
 
-		// Loop through rules to determine if each is valid.
-		foreach ( $rules->posts as $rule_id ) {
-			// Skip if the rule is not valid.
-			if ( ! $this->is_valid_rule( $rule_id ) ) {
-				continue;
-			}
-
-			// Add the rule to our response.
-			$results[] = $rule_id;
-		}
-
-		return $results;
+		array_map( [ $this, 'parse_valid_rules' ], (array) $rules->posts );
 	}
 
 	/**
@@ -250,7 +241,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @param int $rule_id The rule to test.
 	 * @return bool        True if the rule is valid, false otherwise.
 	 */
-	protected function is_valid_rule( int $rule_id ) {
+	protected function parse_valid_rules( int $rule_id ) {
 		// Bail early if the rule isn't in a valid date range.
 		if ( ! $this->is_rule_dates_valid( $rule_id ) ) {
 			return false;
@@ -261,7 +252,8 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			return false;
 		}
 
-		return true;
+		// Add to list of valid search rules for the query.
+		$this->search_rules[] = $rule_id;
 	}
 
 	/**
