@@ -239,17 +239,17 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 * @since 0.1.0
 	 *
 	 * @param int $rule_id The rule to test.
-	 * @return bool        True if the rule is valid, false otherwise.
+	 * @return void
 	 */
 	protected function parse_valid_rules( int $rule_id ) {
 		// Bail early if the rule isn't in a valid date range.
 		if ( ! $this->is_rule_dates_valid( $rule_id ) ) {
-			return false;
+			return;
 		}
 
 		// Bail early if the rule's triggers do not apply to this search.
 		if ( ! $this->rule_triggers_are_valid( $rule_id ) ) {
-			return false;
+			return;
 		}
 
 		// Add to list of valid search rules for the query.
@@ -485,7 +485,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 	 *
 	 * @param  array  $action         Action configuration.
 	 * @param  string $type           Type to apply (boost or bury).
-	 * @return array                  New formatted search args.
+	 * @return void
 	 */
 	protected function add_boost_or_bury( $action, $type = 'boost' ) {
 		// Check for dynamics scripting.
