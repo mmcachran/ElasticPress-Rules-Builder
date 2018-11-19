@@ -159,7 +159,10 @@ class Plugin {
 	 * @return void
 	 */
 	public function init_admin() {
+		$this->admin_support = [];
 
+		// Register objects.
+		$this->register_objects( $this->admin_support );
 	}
 
 	/**

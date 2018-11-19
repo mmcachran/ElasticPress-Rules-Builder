@@ -1,4 +1,5 @@
 /vendor/
+/node_modules/
 
 # ignore local config
 config.local.php

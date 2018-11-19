@@ -49,6 +49,15 @@
     "require-dir": "^0.3.2",
     "run-sequence": "^1.2.2",
     "webpack": "^3.10.0",
-    "webpack-stream": "^3.2.0"
+    "webpack-stream": "^3.2.0",
+    "husky": "^1.1.4"
+  },
+  "dependencies": {
+
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "git diff --diff-filter=ACM --cached --name-only | grep '.php' | xargs -I % php -l %"
+    }
   }
 }
