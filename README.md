@@ -15,4 +15,4 @@ script.allowed_contexts: search
 ```
 
 ## Example
-![Simple Rule Example](readme/assets/img/ep-rules-builder-simple-rule.gif)
+![Simple Rule Example](readme/assets/img/ep-rules-builder-simple-rule-2.gif)
