@@ -203,7 +203,7 @@ class Plugin {
 	 */
 	public function register_object( $object ) {
 		// Bail early if there are no registration methods.
-		if ( ! method_exists( $object, 'can_register' ) || ! method_exists( $object, 'register' ) ) {
+		if ( ! ( $object instanceof \EP_Rules_Builder\RegistrationInterface ) ) {
 			return;
 		}
 
