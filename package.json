@@ -1,11 +1,11 @@
 {
-  "name": "ElasticPress Rules Builder",
+  "name": "ElasticPress-Rules-Builder",
   "version": "1.0.0",
   "description": "ElasticPress Rules Builder",
-  "homepage": "",
+  "homepage": "https://github.com/mmcachran/ElasticPress-Rules-Builder",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/mmcachran/ElasticPress-Rules-Builder.git"
   },
   "author": {
     "name": "mmcachran",
