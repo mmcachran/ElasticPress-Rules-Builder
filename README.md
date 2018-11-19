@@ -14,5 +14,5 @@ script.allowed_types: inline
 script.allowed_contexts: search
 ```
 
-## Example
+## Example Simple Rule
 ![Simple Rule Example](readme/assets/img/ep-rules-builder-simple-rule-2.gif)
