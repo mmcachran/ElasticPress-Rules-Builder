@@ -172,5 +172,5 @@ function is_url_404( $url ) {
 }
 
 // Require additional helpers from the plugin.
-require_once EP_RULES_BUILDER_PLUGIN_DIR . '/includes/EP_Rules_Builder/Helper/Template.php';
-require_once EP_RULES_BUILDER_PLUGIN_DIR . '/includes/EP_Rules_Builder/Helper/Elasticsearch.php';
+require_once __DIR__ . '/Helper/Template.php';
+require_once __DIR__ . '/Helper/Elasticsearch.php';
