@@ -554,7 +554,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		 * @param array  Action being applied
 		 */
 		$this->{$script_type} = apply_filters(
-			'wds_ep_ui_boost_or_bury_scripts',
+			'ep_rules_builder_boost_or_bury_scripts',
 			$this->{$script_type},
 			$script_type,
 			$type,

@@ -234,10 +234,10 @@ class ActionsMetaBox extends AbstractMetaBox {
 	 */
 	protected function get_action_field_options() {
 		return [
-			'post_title'   => esc_html__( 'Title', 'wds-ep-ui' ),
-			'post_content' => esc_html__( 'Content', 'wds-ep-ui' ),
-			'post_excerpt' => esc_html__( 'Excerpt', 'wds-ep-ui' ),
-			'post_name'    => esc_html__( 'Slug', 'wds-ep-ui' ),
+			'post_title'   => esc_html__( 'Title', 'ep-rules-builder' ),
+			'post_content' => esc_html__( 'Content', 'ep-rules-builder' ),
+			'post_excerpt' => esc_html__( 'Excerpt', 'ep-rules-builder' ),
+			'post_name'    => esc_html__( 'Slug', 'ep-rules-builder' ),
 		];
 	}
 }
