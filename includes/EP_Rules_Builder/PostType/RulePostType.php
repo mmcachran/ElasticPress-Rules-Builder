@@ -68,7 +68,7 @@ class RulePostType extends AbstractPostType {
 		return [
 			'labels'              => $this->get_labels(),
 			'supports'            => $this->get_editor_supports(),
-			'public'              => true,
+			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'show_in_nav_menus'   => false,
@@ -76,9 +76,9 @@ class RulePostType extends AbstractPostType {
 			'menu_icon'           => 'dashicons-search',
 			'menu_position'       => 12,
 			'can_export'          => true,
-			'has_archive'         => true,
+			'has_archive'         => false,
 			'exclude_from_search' => true,
-			'publicly_queryable'  => true,
+			'publicly_queryable'  => false,
 			'capability_type'     => 'post',
 			'rewrite'             => [
 				'slug' => 'event',
