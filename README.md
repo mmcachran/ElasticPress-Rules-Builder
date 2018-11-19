@@ -13,3 +13,6 @@ Rules builder for controlling search results. Control (boost, bury, hide) search
 script.allowed_types: inline
 script.allowed_contexts: search
 ```
+
+## Example
+![Simple Rule Example](readme/assets/img/ep-rules-builder-simple-rule.gif)
