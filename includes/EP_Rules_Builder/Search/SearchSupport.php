@@ -580,7 +580,7 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		$script = str_replace( '[VALUE]', $value, $script );
 
 		// Build script score.
-		$score_script = new \stdclass;
+		$score_script = new \stdClass;
 
 		$score_script->script_score = [
 			'script' => [
