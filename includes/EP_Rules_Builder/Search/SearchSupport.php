@@ -395,6 +395,9 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 			case 'is_not_in':
 			case 'does_not_contain':
 				return ! stristr( $this->search_term, $trigger['keyword'] );
+
+			default:
+				break;
 		}
 
 		// The trigger is not valid.
