@@ -201,7 +201,7 @@ class Plugin {
 	 * @param object $object The object to register.
 	 * @return void
 	 */
-	public function register_object( $object ) {
+	protected function register_object( $object ) {
 		// Bail early if there are no registration methods.
 		if ( ! ( $object instanceof \EP_Rules_Builder\RegistrationInterface ) ) {
 			return;
