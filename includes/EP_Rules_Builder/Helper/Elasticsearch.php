@@ -62,7 +62,7 @@ function dynamic_scripting_enabled() {
 	}
 
 	// Parse nodes.
-	foreach ( $response['nodes'] as $node ) {
+	foreach ( (array) $response['nodes'] as $node ) {
 		// Skip if no settings.
 		if ( ! isset( $node['settings']['script'] ) ) {
 			continue;

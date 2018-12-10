@@ -472,9 +472,9 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 
 		// Add to the list of formatted args.
 		foreach ( $hide_ids as $hide_id ) {
-			$this->formatted_args['post_filter']['bool']['must_not'][]['terms'] = array(
+			$this->formatted_args['post_filter']['bool']['must_not'][]['terms'] = [
 				'post_id' => [ trim( $hide_id ) ],
-			);
+			];
 		}
 	}
 
@@ -633,9 +633,9 @@ class SearchSupport implements \EP_Rules_Builder\RegistrationInterface {
 		$text = strtolower( $action['text'] );
 
 		// Start query array for should match.
-		$query = array(
+		$query = [
 			'query' => $text,
-		);
+		];
 
 		// Only add boost if dynamic function_score isn't added.
 		if ( ! $this->plugin->dynamic_scripting ) {

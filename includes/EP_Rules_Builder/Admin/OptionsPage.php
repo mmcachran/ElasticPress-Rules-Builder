@@ -30,6 +30,6 @@ class OptionsPage implements \EP_Rules_Builder\RegistrationInterface {
 	 * @return void
 	 */
 	public function register() {
-		register_setting( 'ep_rules_builder', 'ep_rules_builder', [ $this, '\sanitize_settings' ] );
+		register_setting( 'ep_rules_builder', 'ep_rules_builder', '\sanitize_settings' );
 	}
 }
