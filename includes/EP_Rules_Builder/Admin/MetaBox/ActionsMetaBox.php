@@ -103,7 +103,7 @@ class ActionsMetaBox extends AbstractMetaBox {
 					'title'    => new \Fieldmanager_Textfield(
 						[
 							'label'            => esc_html__( 'Title', 'ep-rules-builder' ),
-							'description'      => esc_html__( 'Title for the action.', 'ep-rules-builder' ),
+							'description'      => esc_html__( 'Optional title for the action.', 'ep-rules-builder' ),
 							'field_class'      => 'text',
 							'validation_rules' => [
 								'required' => false,
