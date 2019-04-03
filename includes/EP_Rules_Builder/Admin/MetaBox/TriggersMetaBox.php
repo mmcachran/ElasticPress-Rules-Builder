@@ -1,4 +1,4 @@
-<?php
+<?php // @codingStandardsIgnoreLine
 /**
  * Class to create the triggers metabox.
  *
@@ -172,7 +172,7 @@ class TriggersMetaBox extends AbstractMetaBox {
 		 *
 		 * Modify allowed operators.
 		 *
-		 * @param         array built-in operators
+		 * @param         array Built-in operators.
 		 */
 		return apply_filters( 'ep_rules_builder_operator_options', $operators );
 	}

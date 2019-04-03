@@ -1,4 +1,4 @@
-<?php
+<?php // @codingStandardsIgnoreLine
 /**
  * Core file to include helpers.
  *

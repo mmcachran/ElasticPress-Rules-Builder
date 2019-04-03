@@ -1,4 +1,4 @@
-<?php
+<?php // @codingStandardsIgnoreLine
 /**
  * Creates the options page logic for the ElasticPress rules builder.
  *

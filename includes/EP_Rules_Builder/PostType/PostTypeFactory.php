@@ -1,4 +1,4 @@
-<?php
+<?php // @codingStandardsIgnoreLine
 /**
  * Builds the post type class instances.
  * Instances are stored locally and returned from cache on subsequent build calls.

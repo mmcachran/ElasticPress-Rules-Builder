@@ -1,4 +1,4 @@
-<?php
+<?php // @codingStandardsIgnoreLine
 /**
  * The EP Rules Builder Rule type taxonomy is an internal taxonomy used for categorizing rules.
  *

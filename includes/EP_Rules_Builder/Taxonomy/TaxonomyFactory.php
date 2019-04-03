@@ -1,4 +1,4 @@
-<?php
+<?php // @codingStandardsIgnoreLine
 /**
  * Builds the taxonomy class instances.
  * Instances are stored locally and returned from cache on subsequent build calls.
